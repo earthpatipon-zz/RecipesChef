@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">RecipesChef</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="usernameText">Username</string>
+    <string name="passwordText">Password</string>
+    <string name="birthDateText">Birth Date</string>
+    <string name="emailText">Email</string>
+    <string name="confirmPassText">Confirm Password</string>
+</resources>
