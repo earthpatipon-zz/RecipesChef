@@ -20,13 +20,8 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-<<<<<<< HEAD:app/src/main/java/com/example/earthpatipon/recipeschef/database/UserDatabase.java
-                            UserDatabase.class, "User.db")
-                            .allowMainThreadQueries().build();
-=======
                             AppDatabase.class, "User.db")
                             .build();
->>>>>>> 316c777d996aa5ef31a6d695014d58dfa8034cb5:app/src/main/java/com/example/earthpatipon/recipeschef/database/AppDatabase.java
                 }
             }
         }

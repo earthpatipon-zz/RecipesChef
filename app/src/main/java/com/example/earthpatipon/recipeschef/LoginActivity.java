@@ -14,6 +14,8 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import com.example.earthpatipon.recipeschef.utils.Initializer;
+
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
@@ -71,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
         String password = passwordInput.getText().toString();
 
         // TODO: Implement your own authentication logic here.
+
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
