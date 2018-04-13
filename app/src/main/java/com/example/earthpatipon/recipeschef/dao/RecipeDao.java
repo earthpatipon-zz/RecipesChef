@@ -14,9 +14,9 @@ public interface RecipeDao {
     List<Recipe> getAllRecipe();
 
     @Query("SELECT * FROM Recipe WHERE Category = category")
-    List<Recipe> findFromCategory(String category);
+    List<Recipe> findByCategory(String category);
 
     @Query("SELECT * FROM Recipe WHERE Ingredient LIKE :keyword")
-    List<Recipe> findFromKeyword(String keyword);
+    List<Recipe> findByKeyword(String keyword);
 
 }

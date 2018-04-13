@@ -4,6 +4,15 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+/**
+ *
+ * Class for User entity
+ *
+ * Attribute: userID, userName, passWord
+ * Constructor: with all attributes
+ * Getters and Setters: all attributes
+ *
+ */
 @Entity
 public class User {
 

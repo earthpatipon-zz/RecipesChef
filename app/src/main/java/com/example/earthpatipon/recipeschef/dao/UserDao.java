@@ -17,10 +17,7 @@ public interface UserDao {
     List<User> getAllUser();
 
     @Query ("SELECT * FROM User WHERE userName LIKE :username LIMIT 1")
-    User findAllByName(String username);
-
-    @Query ("SELECT Password FROM User WHERE userName = username")
-    User findPasswordByName(String username);
+    User findByName(String username);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(User user);
