@@ -14,7 +14,7 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import com.example.earthpatipon.recipeschef.utils.Initializer;
+import com.example.earthpatipon.recipeschef.utils.App;
 
 public class LoginActivity extends AppCompatActivity {
 

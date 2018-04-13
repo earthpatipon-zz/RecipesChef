@@ -14,14 +14,11 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import com.example.earthpatipon.recipeschef.database.AppDatabase;
-import com.example.earthpatipon.recipeschef.entity.User;
-import com.example.earthpatipon.recipeschef.utils.Initializer;
+import com.example.earthpatipon.recipeschef.utils.App;
 
 public class SignupActivity extends AppCompatActivity {
 
     private static final String TAG = "SignupActivity";
-    private AppDatabase database = Initializer.getInitializer().getDatabase();
 
     @BindView(R.id.input_username) EditText userNameInput;
     @BindView(R.id.input_password) EditText passWordInput;
@@ -72,10 +69,11 @@ public class SignupActivity extends AppCompatActivity {
         String userName = userNameInput.getText().toString();
         String password = passWordInput.getText().toString();
 
-        // TODO: Implement your own signup logic here.
-        if(database.userDao().findByName(userName) == null){
-            database.userDao().insert(new User(userName,password));
-        }
+//        // TODO: Implement your own signup logic here.
+//        if(App.getInstance().getDatabase().userDao().findByName(userName) == null){
+//            App.getInstance().getDatabase().userDao().insert(new User(userName,password));
+//        }
+
 
 
         new android.os.Handler().postDelayed(

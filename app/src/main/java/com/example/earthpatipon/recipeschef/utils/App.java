@@ -5,13 +5,13 @@ import android.arch.persistence.room.Room;
 
 import com.example.earthpatipon.recipeschef.database.AppDatabase;
 
-public class Initializer extends Application{
+public class App extends Application{
 
-    private static Initializer INSTANCE;
+    private static App INSTANCE;
 
     private AppDatabase database;
 
-    public static Initializer getInitializer(){
+    public static App getInstance(){
         return INSTANCE;
     }
 
