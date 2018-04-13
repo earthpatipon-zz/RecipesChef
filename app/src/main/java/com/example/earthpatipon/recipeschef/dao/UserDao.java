@@ -14,10 +14,13 @@ import java.util.List;
 public interface UserDao {
 
     @Query("SELECT * FROM User")
-    List<User> getAll();
+    List<User> getAllUser();
 
     @Query ("SELECT * FROM User WHERE userName LIKE :username LIMIT 1")
-    User findByName(String username);
+    User findAllByName(String username);
+
+    @Query ("SELECT Password FROM User WHERE userName = username")
+    User findPasswordByName(String username);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(User user);
