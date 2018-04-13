@@ -23,21 +23,20 @@ public class SignupActivity extends AppCompatActivity {
     @BindView(R.id.input_username) EditText userNameInput;
     @BindView(R.id.input_password) EditText passWordInput;
     @BindView(R.id.button_signup) Button signupButton;
-    @BindView(R.id.button_back) Button backButton;
+    //@BindView(R.id.button_back) Button backButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
-        /*
+
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signup();
             }
         });
-        */
 
 //        backButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -49,6 +48,7 @@ public class SignupActivity extends AppCompatActivity {
 //                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 //            }
 //        });
+
     }
 
     public void signup() {
@@ -74,8 +74,6 @@ public class SignupActivity extends AppCompatActivity {
 //        if(App.getInstance().getDatabase().userDao().findByName(userName) == null){
 //            App.getInstance().getDatabase().userDao().insert(new User(userName,password));
 //        }
-
-
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
