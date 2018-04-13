@@ -14,11 +14,8 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-<<<<<<< HEAD
 import com.example.earthpatipon.recipeschef.utils.App;
 
-=======
->>>>>>> 7b9f87193a7423a51130d105c9f6249dbe2b74bf
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";

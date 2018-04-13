@@ -1,27 +1,20 @@
 package com.example.earthpatipon.recipeschef;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-<<<<<<< HEAD
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import com.example.earthpatipon.recipeschef.utils.App;
-=======
-import com.example.earthpatipon.recipeschef.database.AppDatabase;
-import com.example.earthpatipon.recipeschef.entity.User;
-import com.example.earthpatipon.recipeschef.utils.Initializer;
->>>>>>> 7b9f87193a7423a51130d105c9f6249dbe2b74bf
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class SignupActivity extends AppCompatActivity {
 
