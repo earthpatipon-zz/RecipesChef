@@ -9,18 +9,18 @@ import com.example.earthpatipon.recipeschef.entity.User;
 import com.example.earthpatipon.recipeschef.dao.UserDao;
 
 @Database(entities = {User.class}, version = 1)
-public abstract class UserDatabase extends RoomDatabase {
+public abstract class AppDatabase extends RoomDatabase {
 
-    private static volatile UserDatabase INSTANCE;
+    private static AppDatabase INSTANCE;
 
     public abstract UserDao userDao();
 
-    public static UserDatabase getInstance(Context context) {
+    public static AppDatabase getInstance(Context context) {
         if (INSTANCE == null) {
-            synchronized (UserDatabase.class) {
+            synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            UserDatabase.class, "User.db")
+                            AppDatabase.class, "User.db")
                             .build();
                 }
             }
