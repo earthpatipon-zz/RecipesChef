@@ -51,5 +51,4 @@ public class User {
     public void setPassWord(String passWord) {
         this.passWord = passWord;
     }
-
 }

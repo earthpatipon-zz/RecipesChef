@@ -16,14 +16,11 @@ public interface UserDao {
     @Query("SELECT * FROM User")
     List<User> getAll();
 
-//    @Query("SELECT * FROM User WHERE userName LIKE :username LIMIT 1")
-//    User findByName(String username);
+    @Query ("SELECT * FROM User WHERE userName LIKE :username LIMIT 1")
+    User findByName(String username);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(User user);
-
-//    @Update
-//    void update(Product product);
 
     @Delete
     void deleteAllUsers(User user);
