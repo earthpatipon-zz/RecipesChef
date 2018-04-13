@@ -1,20 +1,27 @@
 package com.example.earthpatipon.recipeschef;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import com.example.earthpatipon.recipeschef.utils.App;
+=======
+import com.example.earthpatipon.recipeschef.database.AppDatabase;
+import com.example.earthpatipon.recipeschef.entity.User;
+import com.example.earthpatipon.recipeschef.utils.Initializer;
+>>>>>>> 7b9f87193a7423a51130d105c9f6249dbe2b74bf
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -23,20 +30,21 @@ public class SignupActivity extends AppCompatActivity {
     @BindView(R.id.input_username) EditText userNameInput;
     @BindView(R.id.input_password) EditText passWordInput;
     @BindView(R.id.button_signup) Button signupButton;
-   //@BindView(R.id.button_back) Button backButton;
+    @BindView(R.id.button_back) Button backButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
-
+        /*
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signup();
             }
         });
+        */
 
 //        backButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
