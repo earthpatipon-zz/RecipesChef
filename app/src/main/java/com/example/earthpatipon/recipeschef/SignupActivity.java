@@ -27,12 +27,16 @@ public class SignupActivity extends AppCompatActivity {
 
     public String userName;
     public String passWord;
+    public ProgressDialog progressDialog;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
+
+        progressDialog = new ProgressDialog(SignupActivity.this,
+                R.style.AppTheme_Dark_Dialog);
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,19 +68,15 @@ public class SignupActivity extends AppCompatActivity {
 
         signupButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this,
-                R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
 
         this.userName = userNameInput.getText().toString();
         this.passWord = passWordInput.getText().toString();
-        //final boolean check;
 
 //      TODO: Implement your own signup logic here.
-        UserExistOrNot dummy = new UserExistOrNot(this.userName, this.passWord);
-        dummy.execute();
+        new insertAsyncTask(this.userName, this.passWord).execute();
 
 
         // uncomment here as default
@@ -90,16 +90,16 @@ public class SignupActivity extends AppCompatActivity {
 
 
 
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
-                        onSignupSuccess();
-                        // onSignupFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
+//        new android.os.Handler().postDelayed(
+//                new Runnable() {
+//                    public void run() {
+//                        // On complete call either onSignupSuccess or onSignupFailed
+//                        // depending on success
+//                        onSignupSuccess();
+//                        // onSignupFailed();
+//                        progressDialog.dismiss();
+//                    }
+//                }, 3000);
     }
 
 
@@ -107,6 +107,7 @@ public class SignupActivity extends AppCompatActivity {
         signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
         finish();
+        //intent to HomePage
     }
 
     public void onSignupFailed() {
@@ -159,22 +160,42 @@ public class SignupActivity extends AppCompatActivity {
         return valid;
     }
 
-    private class UserExistOrNot extends AsyncTask<String, Void, Boolean> {
+    private class insertAsyncTask extends AsyncTask<String, Void, Boolean> {
 
         private boolean exist;
         private String userName;
+        private String passWord;
 
-        UserExistOrNot(String username, String password) {
+        insertAsyncTask(String username, String password) {
             this.userName = username;
+            this.passWord = password;
         }
 
         @Override
         protected Boolean doInBackground(final String... params) {
-            User user = new User(userName, passWord);
-            AppDatabase.getInstance(getApplicationContext()).userDao().insert(user);
+            //User user = new User(userName, passWord);
+            //AppDatabase.getInstance(getApplicationContext()).userDao().insert(user);
+            User temp = AppDatabase.getInstance(getApplicationContext()).userDao().findByName(userName);
+            if(temp == null)
+                exist = false;
+            else
+                exist = true;
             return exist;
         }
 
+        @Override
+        protected void onPostExecute(Boolean bool) {
+           if(!bool){
+               User user = new User(userName, passWord);
+               AppDatabase.getInstance(getApplicationContext()).userDao().insert(user);
+           }
+           else{
+               Toast.makeText(getBaseContext(), "Username already exist", Toast.LENGTH_LONG).show();
+               //can set some interval
+               progressDialog.dismiss();
+               signupButton.setEnabled(true);
+           }
+        }
     }
 
 
