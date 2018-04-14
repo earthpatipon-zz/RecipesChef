@@ -12,6 +12,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20"
+            tools:layout_editor_absoluteX="75dp"
+            tools:layout_editor_absoluteY="0dp" />
+
         <TextView
             android:id="@+id/title_register"
             android:layout_width="match_parent"
@@ -19,9 +25,14 @@
             android:text="Register"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
 
         <EditText
             android:id="@+id/input_username"
@@ -30,6 +41,8 @@
             android:ems="10"
             android:hint="@string/usernameText"
             android:inputType="textPersonName"
+            android:drawableLeft="@drawable/ic_username"
+            android:drawablePadding="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="217dp" />
@@ -40,6 +53,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/passwordText"
+            android:drawableLeft="@drawable/ic_password"
+            android:drawablePadding="20dp"
             android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,10 +62,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.6" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
         <Button
             android:id="@+id/button_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/red_button"
             android:text="Signup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
