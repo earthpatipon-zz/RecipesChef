@@ -104,8 +104,17 @@ public class SignupActivity extends AppCompatActivity {
 
 
     public void onSignupSuccess() {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                User user = new User(userName, passWord);
+                AppDatabase.getInstance(getApplicationContext()).userDao().insert(user);
+            }
+        }).start();
+
+        progressDialog.dismiss();
         signupButton.setEnabled(true);
-        setResult(RESULT_OK, null);
         finish();
         //intent to HomePage
     }
@@ -172,7 +181,7 @@ public class SignupActivity extends AppCompatActivity {
         }
 
         @Override
-        protected Boolean doInBackground(final String... params) {
+        protected Boolean doInBackground(String... params) {
             //User user = new User(userName, passWord);
             //AppDatabase.getInstance(getApplicationContext()).userDao().insert(user);
             User temp = AppDatabase.getInstance(getApplicationContext()).userDao().findByName(userName);
@@ -186,8 +195,7 @@ public class SignupActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean bool) {
            if(!bool){
-               User user = new User(userName, passWord);
-               AppDatabase.getInstance(getApplicationContext()).userDao().insert(user);
+               onSignupSuccess();
            }
            else{
                Toast.makeText(getBaseContext(), "Username already exist", Toast.LENGTH_LONG).show();
