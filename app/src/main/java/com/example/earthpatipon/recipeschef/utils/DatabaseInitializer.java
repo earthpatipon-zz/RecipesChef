@@ -28,7 +28,7 @@ import java.util.List;
 
 public class DatabaseInitializer {
 
-    private static final String TAG = DatabaseInitializer.class.getName();
+    //private static final String TAG = DatabaseInitializer.class.getName();
     private static final int DELAY_MILLIS = 500;
 
     public static void populateAsync(final AppDatabase db) {
@@ -80,8 +80,9 @@ public class DatabaseInitializer {
         // Add admin account
         addUser(db, "admin", "1234");
 
-        List<User> userList = db.userDao().getAll();
-        Log.d(DatabaseInitializer.TAG, "Rows Count: " + userList.size());
+//        List<User> userList = db.userDao().getAll();
+//        Log.d(DatabaseInitializer.TAG, "Rows Count: " + userList.size());
+
 //        try {
 //            // Loans are added with a delay, to have time for the UI to react to changes.
 //

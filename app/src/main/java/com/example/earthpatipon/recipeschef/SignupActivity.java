@@ -1,6 +1,7 @@
 package com.example.earthpatipon.recipeschef;
 
 import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -23,6 +24,9 @@ public class SignupActivity extends AppCompatActivity {
     @BindView(R.id.input_password) EditText passWordInput;
     @BindView(R.id.button_signup) Button signupButton;
     //@BindView(R.id.button_back) Button backButton;
+
+    public String userName;
+    public String passWord;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,19 +70,23 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
 
-        final String userName = userNameInput.getText().toString();
-        final String password = passWordInput.getText().toString();
+        this.userName = userNameInput.getText().toString();
+        this.passWord = passWordInput.getText().toString();
         //final boolean check;
 
 //      TODO: Implement your own signup logic here.
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                User user = new User(userName, password);
-                AppDatabase.getInstance(getApplicationContext()).userDao().insert(user);
-                //onSignupSuccess();
-            }
-        }).start();
+        UserExistOrNot dummy = new UserExistOrNot(this.userName, this.passWord);
+        dummy.execute();
+
+
+        // uncomment here as default
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                User user = new User(userName, passWord);
+//                AppDatabase.getInstance(getApplicationContext()).userDao().insert(user);
+//            }
+//        }).start();
 
 
 
@@ -102,7 +110,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Signup failed", Toast.LENGTH_LONG).show();
         signupButton.setEnabled(true);
     }
 
@@ -150,5 +158,24 @@ public class SignupActivity extends AppCompatActivity {
 
         return valid;
     }
+
+    private class UserExistOrNot extends AsyncTask<String, Void, Boolean> {
+
+        private boolean exist;
+        private String userName;
+
+        UserExistOrNot(String username, String password) {
+            this.userName = username;
+        }
+
+        @Override
+        protected Boolean doInBackground(final String... params) {
+            User user = new User(userName, passWord);
+            AppDatabase.getInstance(getApplicationContext()).userDao().insert(user);
+            return exist;
+        }
+
+    }
+
 
 }
