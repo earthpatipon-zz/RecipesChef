@@ -14,8 +14,6 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import com.example.earthpatipon.recipeschef.utils.App;
-
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
@@ -33,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 login();
@@ -41,7 +38,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         signupButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 // Start the Signup activity
@@ -69,11 +65,13 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
-        String username = usernameInput.getText().toString();
-        String password = passwordInput.getText().toString();
+        String userName = usernameInput.getText().toString();
+        String passWord = passwordInput.getText().toString();
 
         // TODO: Implement your own authentication logic here.
-
+//        if(App.getInstance().getDatabase().userDao().findByName(userName) == null){
+//            App.getInstance().getDatabase().userDao().insert(new User(userName, passWord));
+//        }
 
         new android.os.Handler().postDelayed(
                 new Runnable() {

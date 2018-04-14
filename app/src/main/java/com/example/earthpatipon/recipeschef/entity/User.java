@@ -4,15 +4,6 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-/**
- *
- * Class for User entity
- *
- * Attribute: userID, userName, passWord
- * Constructor: with all attributes
- * Getters and Setters: all attributes
- *
- */
 @Entity
 public class User {
 
@@ -49,15 +40,15 @@ public class User {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String username) {
+        this.userName = username;
     }
 
     public String getPassWord() {
         return passWord;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setPassWord(String password) {
+        this.passWord = password;
     }
 }

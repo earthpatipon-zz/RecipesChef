@@ -1,7 +1,6 @@
 package com.example.earthpatipon.recipeschef.dao;
 
 import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
@@ -14,7 +13,7 @@ import java.util.List;
 public interface UserDao {
 
     @Query("SELECT * FROM User")
-    List<User> getAllUser();
+    List<User> getAll();
 
     @Query ("SELECT * FROM User WHERE userName LIKE :username LIMIT 1")
     User findByName(String username);
@@ -22,7 +21,7 @@ public interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(User user);
 
-    @Delete
-    void deleteAllUsers(User user);
+    @Query("DELETE FROM User")
+    void deleteAll();
 
 }

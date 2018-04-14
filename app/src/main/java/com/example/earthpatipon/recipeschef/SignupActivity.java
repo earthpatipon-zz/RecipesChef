@@ -1,20 +1,19 @@
 package com.example.earthpatipon.recipeschef;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.earthpatipon.recipeschef.database.AppDatabase;
+import com.example.earthpatipon.recipeschef.entity.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import com.example.earthpatipon.recipeschef.utils.App;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -67,13 +66,21 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
 
-        String userName = userNameInput.getText().toString();
-        String password = passWordInput.getText().toString();
+        final String userName = userNameInput.getText().toString();
+        final String password = passWordInput.getText().toString();
+        //final boolean check;
 
-//        // TODO: Implement your own signup logic here.
-//        if(App.getInstance().getDatabase().userDao().findByName(userName) == null){
-//            App.getInstance().getDatabase().userDao().insert(new User(userName,password));
-//        }
+//      TODO: Implement your own signup logic here.
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                User user = new User(userName, password);
+                AppDatabase.getInstance(getApplicationContext()).userDao().insert(user);
+                //onSignupSuccess();
+            }
+        }).start();
+
+
 
         new android.os.Handler().postDelayed(
                 new Runnable() {

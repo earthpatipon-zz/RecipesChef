@@ -1,13 +1,13 @@
 package com.example.earthpatipon.recipeschef;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.Toast;
 
-import com.example.earthpatipon.recipeschef.utils.App;
+import com.example.earthpatipon.recipeschef.database.AppDatabase;
+import com.example.earthpatipon.recipeschef.entity.User;
+import com.example.earthpatipon.recipeschef.utils.DatabaseInitializer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,11 +16,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        if(App.getInstance().getDatabase() == null){
+//            Toast.makeText(getBaseContext(), "hi", Toast.LENGTH_LONG).show();
+//        }
+        DatabaseInitializer.populateAsync(AppDatabase.getInstance(this));
+
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
-//    @Override
+    @Override
+    protected void onDestroy() {
+        AppDatabase.destroyInstance();
+        super.onDestroy();
+    }
+
+    //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        // Inflate the menu; this adds items to the action bar if it is present.
 //        getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -41,5 +52,9 @@ public class MainActivity extends AppCompatActivity {
 //
 //        return super.onOptionsItemSelected(item);
 //    }
+
+    private void populateDb() {
+        DatabaseInitializer.populateSync(AppDatabase.getInstance(this));
+    }
 
 }

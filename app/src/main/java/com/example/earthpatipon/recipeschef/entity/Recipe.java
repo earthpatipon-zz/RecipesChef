@@ -10,7 +10,9 @@ public class Recipe {
     /**
      * Constructor
      */
-    public Recipe(String recipeName, String picture, String description, String difficulty, int time, int serve, String ingredient, String instruction, String category) {
+    public Recipe(String recipeName, String picture, String description,
+                  String difficulty, int time, int serve, String ingredient,
+                  String instruction, String category) {
         this.recipeName = recipeName;
         this.picture = picture;
         this.description = description;
