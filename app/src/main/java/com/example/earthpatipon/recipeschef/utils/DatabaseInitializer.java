@@ -28,7 +28,6 @@ import java.util.List;
 
 public class DatabaseInitializer {
 
-    //private static final String TAG = DatabaseInitializer.class.getName();
     private static final int DELAY_MILLIS = 500;
 
     public static void populateAsync(final AppDatabase db) {
