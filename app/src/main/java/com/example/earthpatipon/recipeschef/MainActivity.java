@@ -16,11 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        if(App.getInstance().getDatabase() == null){
-//            Toast.makeText(getBaseContext(), "hi", Toast.LENGTH_LONG).show();
-//        }
         DatabaseInitializer.populateAsync(AppDatabase.getInstance(this));
-
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }

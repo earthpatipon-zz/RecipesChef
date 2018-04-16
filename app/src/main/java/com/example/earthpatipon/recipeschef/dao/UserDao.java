@@ -24,4 +24,7 @@ public interface UserDao {
     @Query("DELETE FROM User")
     void deleteAll();
 
+//    @Query("ALTER TABLE User AUTO_INCREMENT = 1")
+//    void clearAutoGenerate();
+
 }

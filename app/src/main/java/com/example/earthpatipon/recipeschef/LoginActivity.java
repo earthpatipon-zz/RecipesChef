@@ -2,6 +2,7 @@ package com.example.earthpatipon.recipeschef;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,24 +12,31 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.earthpatipon.recipeschef.database.AppDatabase;
+import com.example.earthpatipon.recipeschef.entity.User;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity {
-
-    private static final String TAG = "LoginActivity";
-    private static final int REQUEST_SIGNUP = 0;
 
     @BindView(R.id.input_username) EditText usernameInput;
     @BindView(R.id.input_password) EditText passwordInput;
     @BindView(R.id.button_login) Button loginButton;
     @BindView(R.id.button_signup) TextView signupButton;
 
+    public String userName;
+    public String passWord;
+    public ProgressDialog progressDialog;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        progressDialog = new ProgressDialog(this, R.style.AppTheme_Dark_Dialog);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Start the Signup activity
                 Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-                startActivityForResult(intent, REQUEST_SIGNUP);
+                startActivity(intent);
                 finish();
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
@@ -50,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login() {
-        Log.d(TAG, "Login");
 
         if (!validate()) {
             onLoginFailed();
@@ -59,81 +66,110 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
-        String userName = usernameInput.getText().toString();
-        String passWord = passwordInput.getText().toString();
+        userName = usernameInput.getText().toString();
+        passWord = passwordInput.getText().toString();
 
-        // TODO: Implement your own authentication logic here.
-//        if(App.getInstance().getDatabase().userDao().findByName(userName) == null){
-//            App.getInstance().getDatabase().userDao().insert(new User(userName, passWord));
-//        }
-
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_SIGNUP) {
-            if (resultCode == RESULT_OK) {
-
-                // TODO: Implement successful signup logic here
-                // By default we just finish the Activity and log them in automatically
-                this.finish();
-            }
-        }
+        // Call thread to access DAO and check user exists or not
+        new loginAsyncTask(this.userName, this.passWord).execute();
     }
 
     @Override
     public void onBackPressed() {
+
         // Disable going back to the MainActivity
         moveTaskToBack(true);
     }
 
     public void onLoginSuccess() {
+
+        progressDialog.dismiss();
         loginButton.setEnabled(true);
+        // *** must be fix to send value to HomeActivity i,e user.
+        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+        startActivity(intent);
         finish();
+        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
 
+        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
         loginButton.setEnabled(true);
     }
 
     public boolean validate() {
+
         boolean valid = true;
 
-        String username = usernameInput.getText().toString();
-        String password = passwordInput.getText().toString();
+        userName = usernameInput.getText().toString();
+        passWord = passwordInput.getText().toString();
 
-//        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-//            _emailText.setError("enter a valid email address");
-//            valid = false;
-//        } else {
-//            _emailText.setError(null);
-//        }
-//
-//        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-//            _passwordText.setError("between 4 and 10 alphanumeric characters");
-//            valid = false;
-//        } else {
-//            _passwordText.setError(null);
-//        }
+        if (userName.isEmpty() || userName.length() < 3) {
+            usernameInput.setError("at least 3 characters");
+            valid = false;
+        } else {
+            usernameInput.setError(null);
+        }
+
+        if (passWord.isEmpty() || passWord.length() < 4 || passWord.length() > 10) {
+            passwordInput.setError("between 4 and 10 alphanumeric characters");
+            valid = false;
+        } else {
+            passwordInput.setError(null);
+        }
 
         return valid;
+    }
+
+    private class loginAsyncTask extends AsyncTask<String, Void, Boolean> {
+
+        private boolean exist;
+        private boolean correctPass;
+        private String userName;
+        private String passWord;
+
+        loginAsyncTask(String username, String password) {
+            this.userName = username;
+            this.passWord = password;
+        }
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+            User temp = AppDatabase.getInstance(getApplicationContext()).userDao().findByName(userName);
+            if(temp == null) exist = false;
+            else{
+                exist = true;
+                if(temp.getPassWord().equals(this.passWord)){
+                    correctPass = true;
+                }
+                else {
+                    correctPass = false;
+                }
+            }
+            return exist;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean exist) {
+            progressDialog.dismiss();
+            if(exist){
+                if(correctPass){
+                    onLoginSuccess();
+                }
+                else{
+                    Toast.makeText(getBaseContext(), "Password isn't correct", Toast.LENGTH_LONG).show();
+                }
+            }
+            else{
+                Toast.makeText(getBaseContext(),  "This username doesn't exist, try to signup first!", Toast.LENGTH_LONG).show();
+                //can set some interval
+                progressDialog.dismiss();
+            }
+            loginButton.setEnabled(true);
+        }
     }
 }
