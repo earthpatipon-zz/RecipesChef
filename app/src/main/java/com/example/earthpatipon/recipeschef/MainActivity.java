@@ -1,12 +1,13 @@
+/* Group: Aoong Aoong
+ * Members: Tanaporn 5888124, Kanjanaporn 5888178, Patipon 5888218
+ */
 package com.example.earthpatipon.recipeschef;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.example.earthpatipon.recipeschef.database.AppDatabase;
-import com.example.earthpatipon.recipeschef.entity.User;
 import com.example.earthpatipon.recipeschef.utils.DatabaseInitializer;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,7 +17,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DatabaseInitializer.populateAsync(AppDatabase.getInstance(this));
+        //Init Context for Non-Activity class
+        DatabaseInitializer di = new DatabaseInitializer(getApplicationContext());
+        // Call DatabaseInitializer class to init dataset into database
+        di.populateAsync(AppDatabase.getInstance(this));
+        // Use intent to call LoginActivity
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
@@ -48,9 +53,5 @@ public class MainActivity extends AppCompatActivity {
 //
 //        return super.onOptionsItemSelected(item);
 //    }
-
-    private void populateDb() {
-        DatabaseInitializer.populateSync(AppDatabase.getInstance(this));
-    }
 
 }

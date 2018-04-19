@@ -1,3 +1,6 @@
+/* Group: Aoong Aoong
+ * Members: Tanaporn 5888124, Kanjanaporn 5888178, Patipon 5888218
+ */
 package com.example.earthpatipon.recipeschef;
 
 import android.app.ProgressDialog;
@@ -23,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.input_username) EditText usernameInput;
     @BindView(R.id.input_password) EditText passwordInput;
     @BindView(R.id.button_login) Button loginButton;
-    @BindView(R.id.button_signup) TextView signupButton;
+    @BindView(R.id.button_signup) Button signupButton;
 
     public String userName;
     public String passWord;
@@ -36,8 +39,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+        // Create Dialog (like pop-up) object
         progressDialog = new ProgressDialog(this, R.style.AppTheme_Dark_Dialog);
 
+        // Waiting to do an action after user click on login button
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // Waiting to do an action after user click on sign-up button
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton.setEnabled(false);
 
+        // Set Dialog object to show message
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
@@ -80,10 +87,11 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        // Disable going back to the MainActivity
+        // Disable going back to the MainActivity as we started from MainActivity
         moveTaskToBack(true);
     }
 
+    // This method is called when user is validated as passed
     public void onLoginSuccess() {
 
         progressDialog.dismiss();
@@ -91,10 +99,11 @@ public class LoginActivity extends AppCompatActivity {
         // *** must be fix to send value to HomeActivity i,e user.
         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
         startActivity(intent);
-        finish();
+        finish(); // this method is to call the rest of android lifecycle component i.e, onDestroy
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
     }
 
+    // This method is called when user is validated as not passed
     public void onLoginFailed() {
 
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
@@ -125,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
         return valid;
     }
 
+    // A thread that will retrieve database to get data and further send it to validate
     private class loginAsyncTask extends AsyncTask<String, Void, Boolean> {
 
         private boolean exist;
@@ -137,6 +147,7 @@ public class LoginActivity extends AppCompatActivity {
             this.passWord = password;
         }
 
+        // It is a declaration of thread function
         @Override
         protected Boolean doInBackground(String... params) {
             User temp = AppDatabase.getInstance(getApplicationContext()).userDao().findByName(userName);
@@ -153,6 +164,7 @@ public class LoginActivity extends AppCompatActivity {
             return exist;
         }
 
+        // The result from doInBackground will be arrived here
         @Override
         protected void onPostExecute(Boolean exist) {
             progressDialog.dismiss();

@@ -1,3 +1,6 @@
+/* Group: Aoong Aoong
+ * Members: Tanaporn 5888124, Kanjanaporn 5888178, Patipon 5888218
+ */
 package com.example.earthpatipon.recipeschef.dao;
 
 import android.arch.persistence.room.Dao;
@@ -9,6 +12,7 @@ import com.example.earthpatipon.recipeschef.entity.Recipe;
 
 import java.util.List;
 
+// This class is an interface to connect to database table "Recipe" with through Room
 @Dao
 public interface RecipeDao {
 

@@ -1,3 +1,6 @@
+/* Group: Aoong Aoong
+ * Members: Tanaporn 5888124, Kanjanaporn 5888178, Patipon 5888218
+ */
 package com.example.earthpatipon.recipeschef.entity;
 
 import android.arch.persistence.room.ColumnInfo;
@@ -26,7 +29,7 @@ public class User {
     private String passWord;
 
     /**
-     * getters and setters
+     * Getters and Setters
      */
     public int getUserId() {
         return userId;
