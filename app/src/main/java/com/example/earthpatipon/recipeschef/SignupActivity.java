@@ -3,7 +3,6 @@
  */
 package com.example.earthpatipon.recipeschef;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -61,6 +60,13 @@ public class SignupActivity extends AppCompatActivity {
 //            }
 //        });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
 
     public void signup() {
