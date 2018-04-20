@@ -44,10 +44,18 @@ public class DatabaseInitializer {
     }
 
     private void populateWithTestData(AppDatabase db) {
-        db.recipeDao().deleteAll();
-        db.userDao().deleteAll();
+        try {
+            String path = copyFileFromAssetManager("images", "images");
+            Log.d("Directory", path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // Recipe table
+        //db.recipeDao().deleteAll();
 
-        addUser(db, "admin", "1234");
+        // User table
+        //db.userDao().deleteAll();
+        //addUser(db, "admin", "1234");
 
     }
 

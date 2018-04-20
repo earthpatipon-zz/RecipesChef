@@ -3,7 +3,12 @@
  */
 package com.example.earthpatipon.recipeschef;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -12,24 +17,48 @@ import com.example.earthpatipon.recipeschef.utils.DatabaseInitializer;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_WRITE_TO_EXTERNAL = 234;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Init Context for Non-Activity class
-        DatabaseInitializer di = new DatabaseInitializer(getApplicationContext());
-        // Call DatabaseInitializer class to init dataset into database
-        di.populateAsync(AppDatabase.getInstance(this));
-        // Use intent to call LoginActivity
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        // Request write to external storage permission
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_TO_EXTERNAL);
+        } else {
+            startApp();
+        }
     }
 
     @Override
     protected void onDestroy() {
         AppDatabase.destroyInstance();
         super.onDestroy();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_WRITE_TO_EXTERNAL:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startApp();
+                } else {
+                    new AlertDialog.Builder(this).setMessage("The app needs write to external storage").setTitle("Error").show();
+                }
+                break;
+        }
+    }
+
+    public void startApp() {
+        //Init Context for Non-Activity class
+        DatabaseInitializer di = new DatabaseInitializer(this);
+        // Call DatabaseInitializer class to init dataset into database
+        di.populateAsync(AppDatabase.getInstance(this));
+        // Use intent to call LoginActivity
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
     //    @Override
