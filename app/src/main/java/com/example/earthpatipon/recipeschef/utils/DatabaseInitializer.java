@@ -28,7 +28,8 @@ public class DatabaseInitializer {
 
     private void populateWithTestData(AppDatabase db) throws IOException {
         ImageManager img = new ImageManager(context);
-        img.copyFileFromAssetManager("RecipeImages", "RecipeImages");
+        //img.copyFileFromAssetManager("RecipeImages", "RecipeImages");
+        img.copyFileOrDir("RecipeImages");
         // Recipe table
         //db.recipeDao().deleteAll();
 
@@ -61,7 +62,5 @@ public class DatabaseInitializer {
             }
             return null;
         }
-
     }
-
 }
