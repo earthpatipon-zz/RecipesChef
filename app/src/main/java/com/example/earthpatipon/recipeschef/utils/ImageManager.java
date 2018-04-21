@@ -20,7 +20,7 @@ public class ImageManager {
 
     public void copyFileOrDir(String path) {
         AssetManager assetManager = context.getAssets();
-        String assets[] = null;
+        String assets[];
         try {
             assets = assetManager.list(path);
             if (assets.length == 0) {
@@ -35,16 +35,16 @@ public class ImageManager {
                     copyFileOrDir(path + "/" + assets[i]);
                 }
             }
-        } catch (IOException ex) {
-            Log.e("tag", "I/O Exception", ex);
+        } catch (IOException e) {
+            Log.e("ERROR", e.getMessage());
         }
     }
 
     private void copyFile(String filename) {
         AssetManager assetManager = context.getAssets();
 
-        InputStream in = null;
-        OutputStream out = null;
+        InputStream in;
+        OutputStream out;
         try {
             in = assetManager.open(filename);
             String newFileName = "/data/data/" + context.getPackageName() + "/" + filename;
@@ -60,7 +60,7 @@ public class ImageManager {
             out.flush();
             out.close();
         } catch (Exception e) {
-            Log.e("tag", e.getMessage());
+            Log.e("ERROR", e.getMessage());
         }
     }
 }
