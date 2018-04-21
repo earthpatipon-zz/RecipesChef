@@ -10,14 +10,35 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Recipe {
 
+    @PrimaryKey (autoGenerate = true)
+    @ColumnInfo (name = "RecipeID")
+    private int recipeID;
+    @ColumnInfo (name = "RecipeName")
+    private String recipeName;
+    @ColumnInfo (name = "Description")
+    private String description;
+    @ColumnInfo (name = "Difficulty")
+    private String difficulty;
+    @ColumnInfo (name = "Time")
+    private int time;
+    @ColumnInfo (name = "Serve")
+    private int serve;
+    @ColumnInfo (name = "Ingredient")
+    private String ingredient;
+    @ColumnInfo (name = "Instruction")
+    private String instruction;
+    @ColumnInfo (name = "Category")
+    private String category;
+    @ColumnInfo (name = "Image")
+    private String image;
+
     /**
      * Constructor
      */
-    public Recipe(String recipeName, String picture, String description,
-                  String difficulty, int time, int serve, String ingredient,
-                  String instruction, String category) {
+    public Recipe(String recipeName, String description, String difficulty,
+                  int time, int serve, String ingredient,
+                  String instruction, String category, String image) {
         this.recipeName = recipeName;
-        this.picture = picture;
         this.description = description;
         this.difficulty = difficulty;
         this.time = time;
@@ -25,38 +46,8 @@ public class Recipe {
         this.ingredient = ingredient;
         this.instruction = instruction;
         this.category = category;
+        this.image = image; // keep reference
     }
-
-    @PrimaryKey (autoGenerate = true)
-    @ColumnInfo (name = "RecipeID")
-    private int recipeID;
-
-    @ColumnInfo (name = "RecipeName")
-    private String recipeName;
-
-    @ColumnInfo (name = "Picture")
-    private String picture;
-
-    @ColumnInfo (name = "Description")
-    private String description;
-
-    @ColumnInfo (name = "Difficulty")
-    private String difficulty;
-
-    @ColumnInfo (name = "Time")
-    private int time;
-
-    @ColumnInfo (name = "Serve")
-    private int serve;
-
-    @ColumnInfo (name = "Ingredient")
-    private String ingredient;
-
-    @ColumnInfo (name = "Instruction")
-    private String instruction;
-
-    @ColumnInfo (name = "Category")
-    private String category;
 
     /**
      * Getters and Setters
@@ -77,68 +68,37 @@ public class Recipe {
         this.recipeName = recipeName;
     }
 
-    public String getPicture() {
-        return picture;
+    public String getImage() {
+        return image;
     }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
+    public void setPicture(String image) { this.image = image;}
 
-    public String getDescription() {
-        return description;
-    }
+    public String getDescription() { return description; }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setDescription(String description) { this.description = description; }
 
-    public String getDifficulty() {
-        return difficulty;
-    }
+    public String getDifficulty() { return difficulty; }
 
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
-    }
+    public void setDifficulty(String difficulty) { this.difficulty = difficulty; }
 
-    public int getTime() {
-        return time;
-    }
+    public int getTime() { return time; }
 
-    public void setTime(int time) {
-        this.time = time;
-    }
+    public void setTime(int time) { this.time = time; }
 
-    public int getServe() {
-        return serve;
-    }
+    public int getServe() { return serve; }
 
-    public void setServe(int serve) {
-        this.serve = serve;
-    }
+    public void setServe(int serve) { this.serve = serve; }
 
-    public String getIngredient() {
-        return ingredient;
-    }
+    public String getIngredient() { return ingredient; }
 
-    public void setIngredient(String ingredient) {
-        this.ingredient = ingredient;
-    }
+    public void setIngredient(String ingredient) { this.ingredient = ingredient; }
 
-    public String getInstruction() {
-        return instruction;
-    }
+    public String getInstruction() { return instruction; }
 
-    public void setInstruction(String instruction) {
-        this.instruction = instruction;
-    }
+    public void setInstruction(String instruction) { this.instruction = instruction; }
 
-    public String getCategory() {
-        return category;
-    }
+    public String getCategory() { return category; }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
+    public void setCategory(String category) { this.category = category; }
 }

@@ -10,6 +10,14 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class User {
 
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "UserID")
+    private int userId;
+    @ColumnInfo(name = "Username")
+    private String userName;
+    @ColumnInfo(name = "Password")
+    private String passWord;
+
     /**
      * Constructor
      */
@@ -17,16 +25,6 @@ public class User {
         this.userName = userName;
         this.passWord = passWord;
     }
-
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "UserID")
-    private int userId;
-
-    @ColumnInfo(name = "Username")
-    private String userName;
-
-    @ColumnInfo(name = "Password")
-    private String passWord;
 
     /**
      * Getters and Setters

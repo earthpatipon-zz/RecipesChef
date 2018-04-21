@@ -31,6 +31,7 @@ public class ImageManager {
                 if (!dir.exists())
                     dir.mkdir();
                 for (int i = 0; i < assets.length; ++i) {
+                    //Log.d("path+asset", path+"/"+assets[i]);
                     copyFileOrDir(path + "/" + assets[i]);
                 }
             }
@@ -47,6 +48,7 @@ public class ImageManager {
         try {
             in = assetManager.open(filename);
             String newFileName = "/data/data/" + context.getPackageName() + "/" + filename;
+            //Log.d("newFileName", newFileName);
             out = new FileOutputStream(newFileName);
 
             byte[] buffer = new byte[1024];
@@ -55,10 +57,8 @@ public class ImageManager {
                 out.write(buffer, 0, read);
             }
             in.close();
-            in = null;
             out.flush();
             out.close();
-            out = null;
         } catch (Exception e) {
             Log.e("tag", e.getMessage());
         }

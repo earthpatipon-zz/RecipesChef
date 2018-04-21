@@ -30,5 +30,4 @@ public interface RecipeDao {
 
     @Query("DELETE FROM Recipe")
     void deleteAll();
-
 }

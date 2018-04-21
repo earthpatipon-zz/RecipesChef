@@ -7,6 +7,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.earthpatipon.recipeschef.database.AppDatabase;
+import com.example.earthpatipon.recipeschef.entity.Recipe;
 import com.example.earthpatipon.recipeschef.entity.User;
 
 import java.io.IOException;
@@ -27,21 +28,27 @@ public class DatabaseInitializer {
     }
 
     private void populateWithTestData(AppDatabase db) throws IOException {
-        ImageManager img = new ImageManager(context);
-        //img.copyFileFromAssetManager("RecipeImages", "RecipeImages");
-        img.copyFileOrDir("RecipeImages");
-        // Recipe table
         //db.recipeDao().deleteAll();
-
-        // User table
         //db.userDao().deleteAll();
         //addUser(db, "admin", "1234");
+        ImageManager imgManager = new ImageManager(context);
+        imgManager.copyFileOrDir("RecipeImages");
+        // Initialize recipes on Recipe table
 
     }
 
-    private void addUser(final AppDatabase db, final String username, final String password) {
+    private void addUser(AppDatabase db, String username, String password) {
         User user = new User(username, password);
         db.userDao().insert(user);
+    }
+
+    private void addRecipe(AppDatabase db,
+                           String recipeName, String description, String difficulty,
+                           int time, int serve, String ingredient,
+                           String instruction, String category, String image){
+        Recipe recipe = new Recipe(recipeName, description, difficulty,
+                time, serve, ingredient, instruction, category, image);
+        db.recipeDao().insert(recipe);
     }
 
     // Sub-class to create that inherit AsyncTask class working as thread
