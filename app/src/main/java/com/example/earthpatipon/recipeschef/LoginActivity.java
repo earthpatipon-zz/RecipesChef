@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         // Create Dialog (like pop-up) object
-        progressDialog = new ProgressDialog(this, R.style.AppTheme_Dark_Dialog);
+        progressDialog = new ProgressDialog(this, R.style.AppTheme_White_Dialog);
 
         // Waiting to do an action after user click on login button
         loginButton.setOnClickListener(new View.OnClickListener() {

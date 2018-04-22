@@ -61,9 +61,9 @@ public class DatabaseInitializer {
                         "6. When the meat is nearly cooked toss in the sesame seeds. By now the heat should be very low. Stir them quickly and turn off the heat.\n" +
                         "7. Serve the Bulgogi onto a plate and enjoy.\n",
                 "Main dish",
-                "BULGOGI.png");
+                "Bulgogi.png");
 
-        addRecipe(db,   "Avocado Salmon Toast",
+        addRecipe(db,   "Avocado salmon toast",
                 "Avocado on toast with smoked salmon",
                 "Easy",
                 15,
@@ -87,9 +87,9 @@ public class DatabaseInitializer {
                       "2. Halve the avocado, remove the stone and scoop the flesh into a bowl.Add the yogurt and lemon juice and mash everything with a fork. Season well with salt and black pepper.\n" +
                           "3. Divide the avocado between the toasted rye bread, sprinkle over a little cayenne pepper and add the smoked salmon and cucumber. Spoon over the dressing, then top with the cress.\n",
                 "Breakfast",
-                "Avocado On Toast With Smoked Selmon.png");
+                "Avocado Salmon Toast.png");
 
-        addRecipe(db, "Chicken Katsu",
+        addRecipe(db, "Chicken katsu",
                 "Japanese style fried chicken.",
                 "Easy",
                 20,
@@ -108,7 +108,7 @@ public class DatabaseInitializer {
                           "5. Heat 1/4 inch of oil in a large skillet over medium-high heat.\n" +
                           "6. Place chicken in the hot oil, and cook 3 or 4 minutes per side, or until golden brown.\n",
                 "Main dish",
-                "Chicken-Katsu.png");
+                "Chicken katsu.png");
 
         addRecipe(db, "Creamy herb chicken",
                 "Quick and easy creamy herb chicken, filled with so much flavour, ready and on your table in 15 minutes",
@@ -136,7 +136,7 @@ public class DatabaseInitializer {
                       "5. Bring to a boil; add the cornstarch mixture to the centre of the pan, quickly stirring, until sauce has thickened slightly. Reduce heat and simmer gently for a further minute to allow the sauce to thicken more.\n" +
                       "6. Return chicken to the skillet. Sprinkle with extra herbs if desired. Serve immediately.\n" ,
                 "Diner",
-                "Creamy-Herb-Chicken-35.png");
+                "Creamy herb chicken.png");
 
         addRecipe(db, "Gyoza" ,
                 "Dumplings filled with ground meat and vegetables and wrapped in a thin dough.",
@@ -189,7 +189,7 @@ public class DatabaseInitializer {
                       "4.Make cookies: Scoop about a tablespoon of the cookie dough and flatten into a flat, pancake-like circle. Spoon about 2 teaspoons of the cream cheese filling in the center. Form another tablespoon of cookie dough into a flat circle and place on top of filling. Pinch the edges together to seal, then roll the filled dough into a ball. Space cookies about 3 apart on prepared baking sheet.\n"+
                       "5.Bake cookies 15 to 17 minutes. Let cool slightly and serve.\n",
                 "Dessert",
-                "Inside Out Red Velvet Cookies.png");
+                "Red velvet cookies.png");
 
         addRecipe(db, "Kimbap",
                 "Korean dish made from cooked rice and other ingredients that are rolled in gim.",
@@ -219,10 +219,10 @@ public class DatabaseInitializer {
                       "8. Repeat the step 6 and 7 with the remaining ingredients.\n" +
                       "9. Line up all kimbap on a cutting board and paste some sesame oil (1 Tbsp) around the seaweed surface. Slice kimbap into bite size pieces. Serve.\n",
                 "Lunch",
-                "KIMBAP.png");
+                "Kimbap.png");
 
-        addRecipe(db,"Korean candied sweet potatoes",
-                "Try this popular Korean sweet potato recipe",
+        addRecipe(db,"Candied potatoes",
+                "Korean candied sweet potatoes",
                 "Easy",
                 35,
                 4,
@@ -241,9 +241,10 @@ public class DatabaseInitializer {
                       "5. Add the cooking oil in a well heated pan and scatter the sugar around. Melt it over medium high heat until the sugar dissolves then quickly reduce the heat to low. Add the sweet potatoes into the pan and mix well with the sauce (for 1 to 2 minutes).\n" +
                       "6. Move the sweet potatoes onto non stick baking paper to cool down for 3 to 5 minutes. Serve. (You can garnish with some crushed nuts or sesame seeds for extra savory taste.)\n" ,
                 "Snack",
-                "SWEET POTATOES.png");
+                "Candied potatoes.png");
 
-        addRecipe(db,"Raspberry oatmeal cookie bars", "The snack with benefit and easy to make it.",
+        addRecipe(db,"Raspberry oatmeal cookie bars",
+                "The snack with benefit and easy to make it.",
                 "Medium",
                 55,
                 9,
@@ -259,10 +260,10 @@ public class DatabaseInitializer {
                       "2.Combine brown sugar, flour, baking soda, salt, and rolled oats. Rub in the butter using your hands or a pastry blender to form a crumbly mixture. Press 2 cups of the mixture into the bottom of the prepared pan. Spread the jam to within 1/4 inch of the edge. Sprinkle the remaining crumb mixture over the top, and lightly press it into the jam.\n" +
                       "3.Bake for 35 to 40 minutes in preheated oven, or until lightly browned. Allow to cool before cutting into bars.\n",
                 "Dessert",
-                "Raspberry Oatmeal Cookie Bars.png");
+                "Raspberry oatmeal cookie bars.png");
 
-        addRecipe(db,"Restaurant Style Beef and Broccoli",
-                "Very easy and delicious. Substituting chicken for the beef works great too. Serve over rice",
+        addRecipe(db,"Beef and broccoli",
+                "Restaurant Style serving over rice",
                 "Easy",
                 60,
                 4,
@@ -282,10 +283,10 @@ public class DatabaseInitializer {
                       "2. Heat vegetable oil in a wok or large skillet over medium-high heat, and stir in the ginger and garlic. Let them sizzle in the hot oil for about 1 minute to flavor the oil, then remove and discard. Stir in the broccoli, and toss and stir in the hot oil until bright green and almost tender, 5 to 7 minutes. Remove the broccoli from the wok, and set aside.\n" +
                  "3. Pour a little more oil into the wok, if needed, and stir and toss the beef with the marinade until the sauce forms a glaze on the beef, and the meat is no longer pink, about 5 minutes. Return the cooked broccoli to the wok, and stir until the meat and broccoli are heated through, about 3 minutes.\n",
                 "Main dish",
-                "Beef and Broccoli.png");
+                "Beef and broccoli.png");
 
-        addRecipe(db,"Spicy Thai basil chicken",
-                "Thai dish has spectacular taste even with regular basil instead of Thai or holy basil",
+        addRecipe(db,"Pad krapow gai",
+                "Spicy Thai basil chicken",
                 "Easy",
                 15,
                 2,
@@ -307,7 +308,7 @@ public class DatabaseInitializer {
                       "2.Heat large skillet over high heat. Drizzle in oil. Add chicken and stir fry until it loses its raw color, 2 to 3 minutes. Stir in shallots, garlic, and sliced chilies. 3.Continue cooking on high heat until some of the juices start to caramelize in the bottom of the pan, about 2 or 3 more minutes. Add about a tablespoon of the sauce mixture to the skillet; cook and stir until sauce begins to caramelize, about 1 minute.\n" +
                       "3.Pour in the rest of the sauce. Cook and stir until sauce has deglazed the bottom of the pan. Continue to cook until sauce glazes onto the meat, 1 or 2 more minutes. Remove from heat. Stir in basil. Cook and stir until basil is wilted, about 20 seconds. Serve with rice.\n" ,
                 "Main dish",
-                "Pad Krapow Gai.png");
+                "Pad krapow gai.png");
 
         addRecipe(db, "Strawberry cheesecake",
                 "No-Bake Strawberry Cheesecake! Made with fresh berries, cashew butter, dates, and an easy almond crust. Creamy, dreamy, and actually pretty healthy.",
@@ -331,11 +332,11 @@ public class DatabaseInitializer {
                      "3.Whisk eggs, sugar, milk, flour, and nutmeg together in a medium bowl. Slowly pour filling over rhubarb mixture until it just reaches the top edge of the crust. Scatter diced butter evenly over the top of the filling. Lightly tap and shake the baking sheet to remove any air bubbles.\n" +
                      "4.Transfer pie to the preheated oven and bake, turning halfway through, until rhubarb is tender and custard is set, about 1 hour. Mix strawberry jam and water in a small bowl; heat in the microwave until warm, about 15 seconds. Glaze the top of the pie with the jam mixture and let cool. Refrigerate until ready to serve.\n",
                 "Dessert",
-                "Easy-Strawberry-Cheesecake.png");
+                "Strawberry cheesecake.png");
 
-        addUser(db, "admin", "1234");
-        addRecipe(db,"recipeName","description","difficulty",1,2,
-                "ingredient","instruction", "category", "Bulgogi.png");
+//        addUser(db, "admin", "1234");
+//        addRecipe(db,"recipeName","description","difficulty",1,2,
+//                "ingredient","instruction", "category", "Bulgogi.png");
 
     }
 
