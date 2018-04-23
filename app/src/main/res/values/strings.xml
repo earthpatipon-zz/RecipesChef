@@ -1,13 +1,11 @@
 <resources>
     <string name="app_name">RecipesChef</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="usernameText">Username</string>
     <string name="passwordText">Password</string>
-    <string name="birthDateText">Birth Date</string>
     <string name="emailText">Email</string>
     <string name="confirmPassText">Confirm Password</string>
-<<<<<<< HEAD
+
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="profile">Profile</string>
@@ -15,10 +13,8 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="logout">Logout</string>
-=======
+
     <string name="send_to">Share</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
->>>>>>> 36e9458e75e87a68facf9363bc47962413d9d29e
 </resources>

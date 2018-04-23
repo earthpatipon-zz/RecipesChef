@@ -48,28 +48,4 @@ public class ImageManager {
             Log.e("ERROR", e.getMessage());
         }
     }
-
-    private void copyFile(String filename) {
-        AssetManager assetManager = context.getAssets();
-
-        InputStream in;
-        OutputStream out;
-        try {
-            in = assetManager.open(filename);
-            String newFileName = "/data/data/" + context.getPackageName() + "/" + filename;
-            //Log.d("newFileName", newFileName);
-            out = new FileOutputStream(newFileName);
-
-            byte[] buffer = new byte[1024];
-            int read;
-            while ((read = in.read(buffer)) != -1) {
-                out.write(buffer, 0, read);
-            }
-            in.close();
-            out.flush();
-            out.close();
-        } catch (Exception e) {
-            Log.e("ERROR", e.getMessage());
-        }
-    }
 }

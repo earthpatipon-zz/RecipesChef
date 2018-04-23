@@ -3,13 +3,10 @@
  */
 package com.example.earthpatipon.recipeschef;
 
-<<<<<<< HEAD
 import android.content.Intent;
-=======
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
->>>>>>> 36e9458e75e87a68facf9363bc47962413d9d29e
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -31,7 +28,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-<<<<<<< HEAD
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
+
+        if (fragment == null) {
+            fragment = new RecipeFragment();
+            fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
+        }
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -77,8 +81,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.home) {
-            Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
+//            startActivity(intent);
         }
         else if (id == R.id.recipe) {
             //Intent intent = new Intent(HomeActivity.this, RecipeActivity.class);
@@ -101,16 +105,3 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 }
-=======
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
-
-        if (fragment == null) {
-            fragment = new RecipeFragment();
-            fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
-        }
-    }
-
-
-}
->>>>>>> 36e9458e75e87a68facf9363bc47962413d9d29e

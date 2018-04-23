@@ -23,14 +23,14 @@ public class DatabaseInitializer {
     }
 
     // A method to call AsyncTask (thread with being able to affect to UI)
-    public void populateAsync(final AppDatabase db) {
-        PopulateDbAsync task = new PopulateDbAsync(db);
-        task.execute();
+    public void populateAsync(AppDatabase db) {
+        if(db.recipeDao().getAllRecipe().size() == 0){
+            PopulateDbAsync task = new PopulateDbAsync(db);
+            task.execute();
+        }
     }
 
     private void populateWithTestData(AppDatabase db) throws IOException {
-        //db.recipeDao().deleteAll();
-        //db.userDao().deleteAll();
         ImageManager imgManager = new ImageManager(context);
         imgManager.copyAssetsFromFolder("RecipeImages");
         // Initialize recipes on Recipe table
@@ -334,11 +334,6 @@ public class DatabaseInitializer {
                      "4.Transfer pie to the preheated oven and bake, turning halfway through, until rhubarb is tender and custard is set, about 1 hour. Mix strawberry jam and water in a small bowl; heat in the microwave until warm, about 15 seconds. Glaze the top of the pie with the jam mixture and let cool. Refrigerate until ready to serve.\n",
                 "Dessert",
                 "Strawberry cheesecake.png");
-
-//        addUser(db, "admin", "1234");
-//        addRecipe(db,"recipeName","description","difficulty",1,2,
-//                "ingredient","instruction", "category", "Bulgogi.png");
-
     }
 
     private void addUser(AppDatabase db, String username, String password) {
@@ -350,6 +345,7 @@ public class DatabaseInitializer {
                            String recipeName, String description, String difficulty,
                            int time, int serve, String ingredient,
                            String instruction, String category, String image){
+
         Recipe recipe = new Recipe(recipeName, description, difficulty,
                 time, serve, ingredient, instruction, category, image);
         db.recipeDao().insert(recipe);
