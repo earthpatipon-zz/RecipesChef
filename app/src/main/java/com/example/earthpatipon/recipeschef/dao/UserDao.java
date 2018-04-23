@@ -10,6 +10,7 @@ import android.arch.persistence.room.Query;
 
 import com.example.earthpatipon.recipeschef.entity.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // This class is an interface to connect to database table "User" with through Room
@@ -17,7 +18,7 @@ import java.util.List;
 public interface UserDao {
 
     @Query("SELECT * FROM User")
-    List<User> getAll();
+    List<User> getAllUser();
 
     @Query ("SELECT * FROM User WHERE Username = :username LIMIT 1")
     User findByName(String username);

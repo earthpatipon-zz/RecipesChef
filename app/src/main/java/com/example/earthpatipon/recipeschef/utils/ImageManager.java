@@ -18,33 +18,42 @@ public class ImageManager {
         this.context = context;
     }
 
-    public void copyFileOrDir(String path) {
+    public void copyStream(InputStream is, OutputStream os) throws IOException {
+        byte[] buffer = new byte[5120];
+        int length = is.read(buffer);
+        while (length > 0) {
+            os.write(buffer, 0, length);
+            length = is.read(buffer);
+        }
+    }
+
+    public void copyAssetsFromFolder(String folderName) throws IOException {
         AssetManager assetManager = context.getAssets();
-        String assets[] = null;
+        String assets[];
+        String internalStorage = context.getFilesDir().getPath() + File.separator + folderName;
+        File checkFolder = new File(internalStorage);
+        if (!checkFolder.exists())
+            checkFolder.mkdir();
         try {
-            assets = assetManager.list(path);
-            if (assets.length == 0) {
-                copyFile(path);
-            } else {
-                String fullPath = "/data/data/" + context.getPackageName() + "/" + path;
-                File dir = new File(fullPath);
-                if (!dir.exists())
-                    dir.mkdir();
-                for (int i = 0; i < assets.length; ++i) {
-                    //Log.d("path+asset", path+"/"+assets[i]);
-                    copyFileOrDir(path + "/" + assets[i]);
-                }
+            assets = assetManager.list(folderName);
+            for (String asset : assets) {
+                InputStream is = assetManager.open(folderName + File.separator + asset);
+                OutputStream os = new FileOutputStream(internalStorage + File.separator + asset);
+                copyStream(is, os);
+                os.flush();
+                os.close();
+                is.close();
             }
-        } catch (IOException ex) {
-            Log.e("tag", "I/O Exception", ex);
+        } catch (IOException e) {
+            Log.e("ERROR", e.getMessage());
         }
     }
 
     private void copyFile(String filename) {
         AssetManager assetManager = context.getAssets();
 
-        InputStream in = null;
-        OutputStream out = null;
+        InputStream in;
+        OutputStream out;
         try {
             in = assetManager.open(filename);
             String newFileName = "/data/data/" + context.getPackageName() + "/" + filename;
@@ -60,7 +69,7 @@ public class ImageManager {
             out.flush();
             out.close();
         } catch (Exception e) {
-            Log.e("tag", e.getMessage());
+            Log.e("ERROR", e.getMessage());
         }
     }
 }

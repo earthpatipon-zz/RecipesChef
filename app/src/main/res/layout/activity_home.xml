@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+=======
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+>>>>>>> 36e9458e75e87a68facf9363bc47962413d9d29e
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeActivity"
     android:id="@+id/drawer">
@@ -39,3 +45,7 @@
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
+=======
+    tools:context=".MainActivity">
+</FrameLayout>
+>>>>>>> 36e9458e75e87a68facf9363bc47962413d9d29e

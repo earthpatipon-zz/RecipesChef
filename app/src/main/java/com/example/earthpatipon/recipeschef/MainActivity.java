@@ -24,12 +24,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Request write to external storage permission
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_TO_EXTERNAL);
-        } else {
-            startApp();
-        }
+        startApp();
+//        // Request write to external storage permission
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_TO_EXTERNAL);
+//        } else {
+//            startApp();
+//        }
     }
 
     @Override
@@ -38,18 +39,18 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_WRITE_TO_EXTERNAL:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    startApp();
-                } else {
-                    new AlertDialog.Builder(this).setMessage("The app needs write to external storage").setTitle("Error").show();
-                }
-                break;
-        }
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+//        switch (requestCode) {
+//            case REQUEST_WRITE_TO_EXTERNAL:
+//                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    startApp();
+//                } else {
+//                    new AlertDialog.Builder(this).setMessage("The app needs write to external storage").setTitle("Error").show();
+//                }
+//                break;
+//        }
+//    }
 
     public void startApp() {
         //Init Context for Non-Activity class

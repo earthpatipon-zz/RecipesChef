@@ -10,6 +10,7 @@ import android.arch.persistence.room.Query;
 
 import com.example.earthpatipon.recipeschef.entity.Recipe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // This class is an interface to connect to database table "Recipe" with through Room

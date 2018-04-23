@@ -20,14 +20,16 @@ public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 
     public abstract RecipeDao recipeDao();
+
     public abstract UserDao userDao();
 
     // Singleton design pattern
     public static AppDatabase getInstance(Context context) {
         if (INSTANCE == null) {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class, "Database.db")
-                            .build();
+                    AppDatabase.class, "Database.db")
+                    .allowMainThreadQueries()
+                    .build();
         }
         return INSTANCE;
     }
