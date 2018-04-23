@@ -10,6 +10,7 @@ import com.example.earthpatipon.recipeschef.database.AppDatabase;
 import com.example.earthpatipon.recipeschef.entity.Recipe;
 import com.example.earthpatipon.recipeschef.entity.User;
 
+import java.io.File;
 import java.io.IOException;
 
 // Init dataset into database class
@@ -31,7 +32,7 @@ public class DatabaseInitializer {
         //db.recipeDao().deleteAll();
         //db.userDao().deleteAll();
         ImageManager imgManager = new ImageManager(context);
-        imgManager.copyFileOrDir("RecipeImages");
+        imgManager.copyAssetsFromFolder("RecipeImages");
         // Initialize recipes on Recipe table
 
         addRecipe(db, "Bulgogi",

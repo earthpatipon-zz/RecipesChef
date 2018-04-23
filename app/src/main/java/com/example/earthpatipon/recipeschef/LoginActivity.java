@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.input_password) EditText passwordInput;
     @BindView(R.id.button_login) Button loginButton;
     @BindView(R.id.button_signup) Button signupButton;
+    @BindView(R.id.button_bypass) Button bypassButton;
 
     public String userName;
     public String passWord;
@@ -38,6 +39,15 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        // Bypass to wherever I want
+        // TODO; remove from production code
+        bypassButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+            }
+        });
 
         // Create Dialog (like pop-up) object
         progressDialog = new ProgressDialog(this, R.style.AppTheme_White_Dialog);

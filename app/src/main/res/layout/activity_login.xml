@@ -98,4 +98,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher_logo" />
 
+    <Button
+        android:id="@+id/button_bypass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="69dp"
+        tools:layout_editor_absoluteY="26dp" />
+
 </android.support.constraint.ConstraintLayout>
