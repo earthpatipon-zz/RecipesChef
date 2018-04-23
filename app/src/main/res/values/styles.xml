@@ -29,5 +29,10 @@
         <item name="android:textColorPrimary">@color/iron</item>
         <item name="android:background">@color/primary</item>
     </style>
+    
+    <style name="AppTheme.CurrentMenu" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorBackground">#FFF2CC</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 
 </resources>

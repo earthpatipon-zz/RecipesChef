@@ -7,4 +7,11 @@
     <string name="birthDateText">Birth Date</string>
     <string name="emailText">Email</string>
     <string name="confirmPassText">Confirm Password</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
+    <string name="recipes">Recipes</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="logout">Logout</string>
 </resources>
