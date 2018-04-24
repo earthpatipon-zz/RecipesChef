@@ -8,26 +8,24 @@
     tools:context=".HomeActivity"
     android:id="@+id/drawer">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragmentContainer"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <include
-    layout="@layout/navigation_item"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+        <include
+            layout="@layout/navigation_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <TextView
-    android:id="@+id/textView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:layout_weight="1"
-    android:text="@string/activity_home"
-    android:textAlignment="center"
-    android:textSize="24dp" />
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </FrameLayout>
+
+    </LinearLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
@@ -36,12 +34,9 @@
         app:menu="@menu/navigation_menu"
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_header">
-
     </android.support.design.widget.NavigationView>
 
-    </FrameLayout>
-
-    </android.support.v4.widget.DrawerLayout>
+</android.support.v4.widget.DrawerLayout>
 
     <!--<?xml version="1.0" encoding="utf-8"?>-->
 
