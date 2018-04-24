@@ -126,7 +126,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.home) {
-
+            ;
         }
         else if (id == R.id.recipe) {
 //            Intent intent = new Intent(HomeActivity.this, RecipeActivity.class);

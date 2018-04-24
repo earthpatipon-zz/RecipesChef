@@ -1,21 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:background="@color/iron">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/iron"
+    android:id="@+id/user_profile">
 
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/user"
-        android:padding="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="130dp"
-        android:textColor="@color/white"
-        android:text="Account Name"
-        android:textSize="25dp"/>
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/user"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="12dp"
+            android:text="Account Name"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

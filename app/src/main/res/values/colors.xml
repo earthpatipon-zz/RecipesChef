@@ -17,6 +17,6 @@
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
     <color name="egg">#FFF2CC</color>
-    <color name="red"></color>
-    <color name="yellow"></color>
+    <color name="red">#F36273</color>
+    <color name="yellow">#F7E293</color>
 </resources>
