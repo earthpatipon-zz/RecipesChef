@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/red_button"
-            android:text="Login"
+            android:text="@string/button_login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="252dp" />
@@ -66,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Don't have an account?"
+            android:text="@string/dont_have_an_account"
             android:textAppearance="@style/TextAppearance.AppCompat.Menu"
             tools:layout_editor_absoluteX="111dp"
             tools:layout_editor_absoluteY="401dp" />
@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/yellow_button"
-            android:text="Signup"
+            android:text="@string/button_signup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="430dp" />
@@ -92,7 +92,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="44dp"
-        android:contentDescription="AppLogo"
+        android:contentDescription="@string/app_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -102,8 +102,9 @@
         android:id="@+id/button_bypass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="69dp"
-        tools:layout_editor_absoluteY="26dp" />
+        android:layout_marginTop="16dp"
+        android:text="@string/button_bypass"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

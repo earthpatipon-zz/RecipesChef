@@ -28,10 +28,11 @@ public class SignupActivity extends AppCompatActivity {
 
     //@BindView(R.id.button_back) Button backButton;
 
-    public String userName;
-    public String passWord;
-    public String confirmPassword;
-    public ProgressDialog progressDialog;
+    private ProgressDialog progressDialog;
+    private String userName;
+    private String passWord;
+    private String confirmPassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

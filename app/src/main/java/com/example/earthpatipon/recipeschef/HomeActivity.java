@@ -36,18 +36,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
         }
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer);
-        toggle = new ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close);
+        drawer = findViewById(R.id.drawer);
+        toggle = new ActionBarDrawerToggle(this, drawer, R.string.action_open, R.string.action_close);
 
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 

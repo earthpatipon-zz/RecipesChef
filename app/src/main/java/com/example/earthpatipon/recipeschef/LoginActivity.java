@@ -29,9 +29,9 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.button_signup) Button signupButton;
     @BindView(R.id.button_bypass) Button bypassButton;
 
-    public String userName;
-    public String passWord;
-    public ProgressDialog progressDialog;
+    private ProgressDialog progressDialog;
+    private String userName;
+    private String passWord;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

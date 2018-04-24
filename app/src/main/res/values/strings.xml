@@ -1,20 +1,26 @@
 <resources>
     <string name="app_name">RecipesChef</string>
-    <string name="action_settings">Settings</string>
+
     <string name="usernameText">Username</string>
     <string name="passwordText">Password</string>
     <string name="emailText">Email</string>
     <string name="confirmPassText">Confirm Password</string>
 
-    <string name="home">Home</string>
-    <string name="search">Search</string>
-    <string name="profile">Profile</string>
-    <string name="recipes">Recipes</string>
-    <string name="open">Open</string>
-    <string name="close">Close</string>
-    <string name="logout">Logout</string>
+    <string name="button_login">Login</string>
+    <string name="button_signup">Signup</string>
 
-    <string name="send_to">Share</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="activity_home">Home</string>
+    <string name="fragment_search">Search</string>
+    <string name="fragment_profile">Profile</string>
+    <string name="fragment_recipes">Recipes</string>
+    <string name="fragment_logout">Logout</string>
+    <string name="action_open">Open</string>
+    <string name="action_close">Close</string>
+    <string name="action_share">Share</string>
+    <string name="dont_have_an_account">Don\'t have an account?</string>
+    <string name="app_logo">AppLogo</string>
+    <string name="button_bypass">Button</string>
+    <string name="head_signup">Sign up</string>
+
+
 </resources>

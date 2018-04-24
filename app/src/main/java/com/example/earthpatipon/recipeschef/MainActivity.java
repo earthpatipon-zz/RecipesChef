@@ -17,7 +17,7 @@ import com.example.earthpatipon.recipeschef.utils.DatabaseInitializer;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_WRITE_TO_EXTERNAL = 234;
+    //private static final int REQUEST_WRITE_TO_EXTERNAL = 234;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

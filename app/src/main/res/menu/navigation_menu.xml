@@ -20,6 +20,6 @@
             android:title="Profile"/>
 
         <item android:id="@+id/logout"
-            android:title="@string/logout"/>
+            android:title="@string/fragment_logout"/>
     </group>
 </menu>

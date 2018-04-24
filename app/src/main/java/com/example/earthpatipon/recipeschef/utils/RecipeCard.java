@@ -1,6 +1,6 @@
 package com.example.earthpatipon.recipeschef.utils;
 
-public class RecipeModel {
+public class RecipeCard {
 
     private String cardName;
     private int isFav;
