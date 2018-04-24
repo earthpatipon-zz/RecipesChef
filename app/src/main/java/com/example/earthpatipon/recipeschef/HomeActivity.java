@@ -37,13 +37,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private FragmentManager fm;
     private Fragment fragment;
 
-    private List<RecipeCard> recipeList = new ArrayList<>();
+    private List<RecipeCard> recipeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        recipeList = new ArrayList<>();
         initializeCard();
 
         fm = getSupportFragmentManager();
@@ -95,8 +96,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         // Associate searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView = (SearchView) menu.findItem(R.id.action_search)
+                .getActionView();
+        searchView.setSearchableInfo(searchManager
+                .getSearchableInfo(getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
 
         // listening to search query text change
@@ -126,7 +129,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         }
         else if (id == R.id.recipe) {
-            RecipeFragment.class
+//            Intent intent = new Intent(HomeActivity.this, RecipeActivity.class);
+//            startActivity(intent);
         }
         else if (id == R.id.search) {
             //Intent intent = new Intent(HomeActivity.this, SearchActivity.class);

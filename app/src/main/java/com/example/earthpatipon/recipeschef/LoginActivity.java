@@ -3,16 +3,15 @@
  */
 package com.example.earthpatipon.recipeschef;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.earthpatipon.recipeschef.database.AppDatabase;
@@ -28,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.button_login) Button loginButton;
     @BindView(R.id.button_signup) Button signupButton;
     @BindView(R.id.button_bypass) Button bypassButton;
+    @BindView(R.id.button_bypass2) Button bypassButton2;
 
     private ProgressDialog progressDialog;
     private String userName;
@@ -46,6 +46,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+            }
+        });
+
+        // TODO; remove from production code
+        bypassButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RecipeActivity.class));
             }
         });
 
