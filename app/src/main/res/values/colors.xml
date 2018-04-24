@@ -6,7 +6,7 @@
     <color name="primary">#E43F3F</color>
     <color name="primary_dark">#E12929</color>
     <color name="primary_darker">#CC1D1D</color>
-    <color name="accent">#FFFFFF</color>
+    <color name="accent">#CC1D1D</color>
     <color name="black">#000000</color>
     <color name="jet">#222222</color>
     <color name="oil">#333333</color>
@@ -17,4 +17,6 @@
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
     <color name="egg">#FFF2CC</color>
+    <color name="red"></color>
+    <color name="yellow"></color>
 </resources>

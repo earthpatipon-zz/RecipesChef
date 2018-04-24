@@ -4,11 +4,10 @@
 package com.example.earthpatipon.recipeschef;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -36,15 +35,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
         }
 
+
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer);
-        toggle = new ActionBarDrawerToggle(this, drawer, R.string.action_open, R.string.action_close);
-
+        toggle = new ActionBarDrawerToggle(HomeActivity.this, drawer, R.string.action_open, R.string.action_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         NavigationView navigationView = findViewById(R.id.navigation_view);
@@ -53,7 +54,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+//        int id = item.getItemId();
+//
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
         if (toggle.onOptionsItemSelected(item) == true) {
             return true;
         }
@@ -81,8 +86,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.home) {
-//            Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
-//            startActivity(intent);
+            ;
         }
         else if (id == R.id.recipe) {
             //Intent intent = new Intent(HomeActivity.this, RecipeActivity.class);
