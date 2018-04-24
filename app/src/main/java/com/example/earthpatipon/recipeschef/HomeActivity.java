@@ -35,10 +35,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
         }
 
-
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         drawer = findViewById(R.id.drawer);
         toggle = new ActionBarDrawerToggle(HomeActivity.this, drawer, R.string.action_open, R.string.action_close);
         drawer.addDrawerListener(toggle);
