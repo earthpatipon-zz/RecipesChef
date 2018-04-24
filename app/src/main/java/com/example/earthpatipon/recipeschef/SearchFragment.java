@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class SearchFragment extends Fragment {
 
-    private List<RecipeCard> cardList = new ArrayList<>();
+    private List<RecipeCard> recipeList;
     private Context context;
     private RecyclerView recyclerView;
 
@@ -37,12 +37,15 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recipe, container, false);
-        recyclerView = view.findViewById(R.id.cardView);
-        recyclerView.setHasFixedSize(true);
         LinearLayoutManager MyLayoutManager = new LinearLayoutManager(getActivity());
         MyLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        if (cardList.size() > 0 & recyclerView != null) {
-            recyclerView.setAdapter(new RecipeAdapter(context, cardList));
+        HomeActivity activity = (HomeActivity) getActivity();
+
+        recyclerView = view.findViewById(R.id.cardView);
+        recyclerView.setHasFixedSize(true);
+        recipeList = activity.getRecipeList();
+        if (recipeList.size() > 0 & recyclerView != null) {
+            recyclerView.setAdapter(new RecipeAdapter(context, recipeList));
         }
         recyclerView.setLayoutManager(MyLayoutManager);
         return view;
