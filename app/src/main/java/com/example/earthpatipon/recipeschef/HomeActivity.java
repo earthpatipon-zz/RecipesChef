@@ -28,7 +28,7 @@ import com.example.earthpatipon.recipeschef.utils.SearchAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActionBarDrawerToggle toggle;
     private DrawerLayout drawer;
@@ -76,8 +76,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
             super.onBackPressed();
         }
     }
@@ -117,7 +116,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch(id){
+        switch (id) {
             case R.id.home:
                 break;
             case R.id.recipe:
@@ -137,12 +136,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             default:
                 break;
         }
-
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    public List<RecipeCard> getRecipeList(){
+    public List<RecipeCard> getRecipeList() {
         return recipeList;
     }
 
@@ -158,7 +156,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void replaceFragment(Class fragmentClass){
+    public void replaceFragment(Class fragmentClass) {
 
         Fragment fragment = null;
         try {
@@ -170,5 +168,5 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
     }
-
 }
+
