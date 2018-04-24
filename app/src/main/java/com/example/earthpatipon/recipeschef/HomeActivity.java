@@ -23,21 +23,23 @@ import com.example.earthpatipon.recipeschef.database.AppDatabase;
 import com.example.earthpatipon.recipeschef.entity.Recipe;
 import com.example.earthpatipon.recipeschef.utils.RecipeAdapter;
 import com.example.earthpatipon.recipeschef.utils.RecipeCard;
+import com.example.earthpatipon.recipeschef.utils.SearchAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActionBarDrawerToggle toggle;
     private DrawerLayout drawer;
-    private RecipeAdapter recipeAdapter;
-    private SearchView searchView;
     private Toolbar toolbar;
-    private FragmentManager fm;
-    private Fragment fragment;
+
+    private RecipeAdapter recipeAdapter;
+    private SearchAdapter searchAdapter;
 
     private List<RecipeCard> recipeList;
+
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,17 +47,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_home);
 
         recipeList = new ArrayList<>();
-        initializeCard();
-
-        fm = getSupportFragmentManager();
-        fragment = fm.findFragmentById(R.id.fragmentContainer);
-
-        if (fragment == null) {
-            fragment = new RecipeFragment();
-            fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
-        }
-
-        recipeAdapter = new RecipeAdapter(this, recipeList);
+        initializeRecipeList();
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -84,95 +76,97 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
             super.onBackPressed();
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-
-        // Associate searchable configuration with the SearchView
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.action_search)
-                .getActionView();
-        searchView.setSearchableInfo(searchManager
-                .getSearchableInfo(getComponentName()));
-        searchView.setMaxWidth(Integer.MAX_VALUE);
-
-        // listening to search query text change
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                // filter recycler view when query submitted
-                recipeAdapter.getFilter().filter(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String query) {
-                // filter recycler view when text is changed
-                recipeAdapter.getFilter().filter(query);
-                return false;
-            }
-        });
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//
+//        // Associate searchable configuration with the SearchView
+//        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+//        searchView = (SearchView) menu.findItem(R.id.action_search)
+//                .getActionView();
+//        searchView.setSearchableInfo(searchManager
+//                .getSearchableInfo(getComponentName()));
+//        searchView.setMaxWidth(Integer.MAX_VALUE);
+//
+//        // listening to search query text change
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                // filter recycler view when query submitted
+//                recipeAdapter.getFilter().filter(query);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String query) {
+//                // filter recycler view when text is changed
+//                recipeAdapter.getFilter().filter(query);
+//                return false;
+//            }
+//        });
+//        return true;
+//    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.home) {
-            ;
+        switch (id) {
+            case R.id.home:
+                break;
+            case R.id.recipe:
+                recipeAdapter = new RecipeAdapter(this, recipeList);
+                replaceFragment(RecipeFragment.class);
+            case R.id.search:
+                searchAdapter = new SearchAdapter(this, recipeList);
+                replaceFragment(SearchFragment.class);
+                break;
+            case R.id.profile:
+                //replaceFragment(ProfileFragment.class);
+                break;
+            case R.id.logout:
+//                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+//                startActivity(intent);
+                break;
+            default:
+                break;
         }
-        else if (id == R.id.recipe) {
-//            Intent intent = new Intent(HomeActivity.this, RecipeActivity.class);
-//            startActivity(intent);
-        }
-        else if (id == R.id.search) {
-            //Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
-            //startActivity(intent);
-        }
-        else if (id == R.id.profile) {
-            //Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-            //startActivity(intent);
-        }
-        else if (id == R.id.logout) {
-            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-            startActivity(intent);
-        }
-
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    public List<RecipeCard> getRecipeList(){
+    public List<RecipeCard> getRecipeList() {
         return recipeList;
     }
 
-    private void initializeCard() {
-        List<Recipe> recipeList = AppDatabase.getInstance(this).recipeDao().getAllRecipe();
+    private void initializeRecipeList() {
+        List<Recipe> recipes = AppDatabase.getInstance(this).recipeDao().getAllRecipe();
 
-        for (int i = 0; i < recipeList.size(); i++) {
-            RecipeCard item = new RecipeCard();
-            item.setCardName(recipeList.get(i).getRecipeName());
-            item.setIsFav(0);
-            item.setIsTurned(0);
-            this.recipeList.add(item);
+        for (int i = 0; i < recipes.size(); i++) {
+            RecipeCard card = new RecipeCard();
+            card.setCardName(recipes.get(i).getRecipeName());
+            card.setIsFav(0);
+            card.setIsTurned(0);
+            this.recipeList.add(card);
         }
     }
 
-    public void selectFragment(Class fragment){
+    public void replaceFragment(Class fragmentClass) {
 
-//        if (fragment == null) {
-//            fragment = new RecipeFragment();
-//            fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
-//        }
-
-        recipeAdapter = new RecipeAdapter(this, recipeList);
+        Fragment fragment = null;
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
     }
-
 }
+

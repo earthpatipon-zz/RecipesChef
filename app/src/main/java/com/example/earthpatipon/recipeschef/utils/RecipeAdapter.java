@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.earthpatipon.recipeschef.R;
-import com.example.earthpatipon.recipeschef.entity.Recipe;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -25,22 +23,20 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> implements Filterable {
+public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
     private Context context;
     private List<RecipeCard> recipeList;
-    private List<RecipeCard> recipeListFiltered;
 
     public RecipeAdapter(Context context, List<RecipeCard> list) {
         this.context = context;
         this.recipeList = list;
-        this.recipeListFiltered = list;
     }
 
     @Override
     public RecipeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_items, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_recipe, parent, false);
         RecipeViewHolder holder = new RecipeViewHolder(context, view);
         return holder;
     }
@@ -64,38 +60,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     @Override
     public int getItemCount() {
         return recipeList.size();
-    }
-
-    @Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                String charString = charSequence != null ? charSequence.toString() : "";
-                if (charString.isEmpty()) {
-                    recipeListFiltered = recipeList;
-                } else {
-                    List<RecipeCard> filteredList = new ArrayList<>();
-                    for (RecipeCard row : recipeList) {
-                        // TODO: implement search logic here
-                        if (row.getCardName().toLowerCase().contains(charString.toLowerCase())) {
-                            filteredList.add(row);
-                        }
-                    }
-                    recipeListFiltered = filteredList;
-                }
-
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = recipeListFiltered;
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                recipeListFiltered = (ArrayList<RecipeCard>) filterResults.values;
-                notifyDataSetChanged();
-            }
-        };
     }
 
     public class RecipeViewHolder extends RecyclerView.ViewHolder {

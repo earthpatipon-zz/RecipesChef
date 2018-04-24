@@ -45,7 +45,7 @@ public class RecipeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = getActivity().getApplicationContext();
-        Log.d("fragment","hi");
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -64,4 +64,6 @@ public class RecipeFragment extends Fragment {
         recyclerView.setLayoutManager(MyLayoutManager);
         return view;
     }
+
+
 }
