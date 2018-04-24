@@ -4,20 +4,19 @@
         <item
             android:id="@+id/home"
             android:icon="@drawable/home"
-            android:title="Home"
-            android:background="@color/egg"/>
+            android:title="@string/activity_home"/>
 
         <item android:id="@+id/recipe"
             android:icon="@drawable/bookmark"
-            android:title="Recipes"/>
+            android:title="@string/fragment_recipes"/>
 
         <item android:id="@+id/search"
             android:icon="@drawable/search"
-            android:title="Search"/>
+            android:title="@string/fragment_search"/>
 
         <item android:id="@+id/profile"
             android:icon="@drawable/avatar"
-            android:title="Profile"/>
+            android:title="@string/fragment_profile"/>
 
         <item android:id="@+id/logout"
             android:title="@string/fragment_logout"/>
