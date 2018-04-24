@@ -6,8 +6,6 @@ package com.example.earthpatipon.recipeschef;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,7 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class RecipeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
@@ -24,22 +22,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
-
-        if (fragment == null) {
-            fragment = new RecipeFragment();
-            fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
-        }
-
+        setContentView(R.layout.activity_recipe);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer);
-        toggle = new ActionBarDrawerToggle(HomeActivity.this, drawer, R.string.action_open, R.string.action_close);
+        toggle = new ActionBarDrawerToggle(RecipeActivity.this, drawer, R.string.action_open, R.string.action_close);
 
         drawer.addDrawerListener(toggle);
         toggle.syncState();
@@ -48,6 +37,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
     }
 
     @Override
@@ -84,22 +75,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.home) {
-            ;
-        }
-        else if (id == R.id.recipe) {
-            Intent intent = new Intent(HomeActivity.this, RecipeActivity.class);
+            Intent intent = new Intent(RecipeActivity.this, HomeActivity.class);
             startActivity(intent);
         }
+        else if (id == R.id.recipe) {
+            ;
+        }
         else if (id == R.id.search) {
-            //Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+            //Intent intent = new Intent(RecipeActivity.this, SearchActivity.class);
             //startActivity(intent);
         }
         else if (id == R.id.profile) {
-            //Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+            //Intent intent = new Intent(RecipeActivity.this, ProfileActivity.class);
             //startActivity(intent);
         }
         else if (id == R.id.logout) {
-            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+            Intent intent = new Intent(RecipeActivity.this, LoginActivity.class);
             startActivity(intent);
         }
 
