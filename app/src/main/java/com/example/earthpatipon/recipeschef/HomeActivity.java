@@ -34,6 +34,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private RecipeAdapter recipeAdapter;
     private SearchView searchView;
     private Toolbar toolbar;
+    private FragmentManager fm;
+    private Fragment fragment;
 
     private List<RecipeCard> recipeList = new ArrayList<>();
 
@@ -44,8 +46,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         initializeCard();
 
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
+        fm = getSupportFragmentManager();
+        fragment = fm.findFragmentById(R.id.fragmentContainer);
 
         if (fragment == null) {
             fragment = new RecipeFragment();
@@ -124,8 +126,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         }
         else if (id == R.id.recipe) {
-            //Intent intent = new Intent(HomeActivity.this, RecipeActivity.class);
-            //startActivity(intent);
+            RecipeFragment.class
         }
         else if (id == R.id.search) {
             //Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
@@ -144,6 +145,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    public List<RecipeCard> getRecipeList(){
+        return recipeList;
+    }
+
     private void initializeCard() {
         List<Recipe> recipeList = AppDatabase.getInstance(this).recipeDao().getAllRecipe();
 
@@ -156,7 +161,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public List<RecipeCard> getRecipeList(){
-        return recipeList;
+    public void selectFragment(Class fragment){
+
+//        if (fragment == null) {
+//            fragment = new RecipeFragment();
+//            fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
+//        }
+
+        recipeAdapter = new RecipeAdapter(this, recipeList);
     }
+
 }

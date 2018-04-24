@@ -38,7 +38,6 @@ public class RecipeFragment extends Fragment {
     private Context context;
     private RecyclerView recyclerView;
 
-
     public RecipeFragment() { }
 
     @Override

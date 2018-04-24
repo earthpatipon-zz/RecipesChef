@@ -50,5 +50,4 @@ public class SearchFragment extends Fragment {
         recyclerView.setLayoutManager(MyLayoutManager);
         return view;
     }
-
 }
