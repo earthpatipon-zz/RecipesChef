@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -122,6 +123,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.recipe:
                 recipeAdapter = new RecipeAdapter(this, recipeList);
                 replaceFragment(RecipeFragment.class);
+                break;
             case R.id.search:
                 searchAdapter = new SearchAdapter(this, recipeList);
                 replaceFragment(SearchFragment.class);
