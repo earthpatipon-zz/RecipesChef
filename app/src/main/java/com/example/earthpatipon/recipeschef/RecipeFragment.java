@@ -37,7 +37,10 @@ public class RecipeFragment extends Fragment {
 
     private List<RecipeCard> recipeList;
     private Context context;
+
     private RecyclerView recyclerView;
+
+    private RecipeAdapter recipeAdapter;
 
     public RecipeFragment() { }
 
@@ -53,11 +56,14 @@ public class RecipeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recipe, container, false);
         LinearLayoutManager MyLayoutManager = new LinearLayoutManager(getActivity());
         MyLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        HomeActivity activity = (HomeActivity) getActivity();
 
-        recyclerView = view.findViewById(R.id.cardView);
-        recyclerView.setHasFixedSize(true);
+        HomeActivity activity = (HomeActivity) getActivity();
+        recipeAdapter = activity.getRecipeAdapter();
         recipeList = activity.getRecipeList();
+
+        recyclerView = view.findViewById(R.id.RecipeCardView);
+        recyclerView.setHasFixedSize(true);
+
         if (recipeList.size() > 0 & recyclerView != null) {
             recyclerView.setAdapter(new RecipeAdapter(context, recipeList));
         }

@@ -1,13 +1,12 @@
 package com.example.earthpatipon.recipeschef;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,7 +26,11 @@ public class SearchFragment extends Fragment {
 
     private List<RecipeCard> recipeList;
     private Context context;
+
     private RecyclerView recyclerView;
+    private SearchView searchView;
+
+    private SearchAdapter searchAdapter;
 
     public SearchFragment() { }
 
@@ -43,14 +46,16 @@ public class SearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         LinearLayoutManager MyLayoutManager = new LinearLayoutManager(getActivity());
         MyLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        HomeActivity activity = (HomeActivity) getActivity();
 
-        recyclerView = view.findViewById(R.id.cardView);
-        recyclerView.setHasFixedSize(true);
+        HomeActivity activity = (HomeActivity) getActivity();
+        searchAdapter = activity.getSearchAdapter();
         recipeList = activity.getRecipeList();
-        //Log.d("size", Integer.toString(recipeList.size()));
+
+        recyclerView = view.findViewById(R.id.SearchCardView);
+        recyclerView.setHasFixedSize(true);
+
         if (recipeList.size() > 0 & recyclerView != null) {
-            recyclerView.setAdapter(new SearchAdapter(context, recipeList));
+            recyclerView.setAdapter(searchAdapter);
         }
         recyclerView.setLayoutManager(MyLayoutManager);
         return view;
@@ -59,23 +64,51 @@ public class SearchFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.search_menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-        searchView.setOnQueryTextListener(
-                new SearchView.OnQueryTextListener() {
-                    @Override
-                    public boolean onQueryTextSubmit(String query) {
-                        return false;
-                    }
 
-                    @Override
-                    public boolean onQueryTextChange(String newText) {
-                        //adapter.getFilter().filter(newText);
-                        return true;
-                    }
-                }
-        );
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setMaxWidth(Integer.MAX_VALUE);
 
+        // listening to search query text change
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // filter recycler view when query submitted
+                searchAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                // filter recycler view when text is changed
+                searchAdapter.getFilter().filter(query);
+                return false;
+            }
+        });
     }
+
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        inflater.inflate(R.menu.search_menu2, menu);
+//        super.onCreateOptionsMenu(menu, inflater);
+//        MenuItem searchItem = menu.findItem(R.id.action_search);
+//        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+//        searchView.setOnQueryTextListener(
+//                new SearchView.OnQueryTextListener() {
+//                    @Override
+//                    public boolean onQueryTextSubmit(String query) {
+//                        return false;
+//                    }
+//
+//                    @Override
+//                    public boolean onQueryTextChange(String newText) {
+//                        //adapter.getFilter().filter(newText);
+//                        return true;
+//                    }
+//                }
+//        );
+//
+//    }
 }

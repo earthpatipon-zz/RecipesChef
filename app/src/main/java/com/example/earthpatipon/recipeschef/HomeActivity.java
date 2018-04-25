@@ -19,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.earthpatipon.recipeschef.database.AppDatabase;
 import com.example.earthpatipon.recipeschef.entity.Recipe;
@@ -40,8 +41,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private List<RecipeCard> recipeList;
 
-    private SearchView searchView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +48,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         recipeList = new ArrayList<>();
         initializeRecipeList();
+
+        recipeAdapter = new RecipeAdapter(this, recipeList);
+        searchAdapter = new SearchAdapter(this, recipeList);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -82,37 +84,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//
-//        // Associate searchable configuration with the SearchView
-//        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-//        searchView = (SearchView) menu.findItem(R.id.action_search)
-//                .getActionView();
-//        searchView.setSearchableInfo(searchManager
-//                .getSearchableInfo(getComponentName()));
-//        searchView.setMaxWidth(Integer.MAX_VALUE);
-//
-//        // listening to search query text change
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                // filter recycler view when query submitted
-//                recipeAdapter.getFilter().filter(query);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String query) {
-//                // filter recycler view when text is changed
-//                recipeAdapter.getFilter().filter(query);
-//                return false;
-//            }
-//        });
-//        return true;
-//    }
-
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -121,11 +92,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.home:
                 break;
             case R.id.recipe:
-                recipeAdapter = new RecipeAdapter(this, recipeList);
                 replaceFragment(RecipeFragment.class);
                 break;
             case R.id.search:
-                searchAdapter = new SearchAdapter(this, recipeList);
                 replaceFragment(SearchFragment.class);
                 break;
             case R.id.profile:
@@ -146,6 +115,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         return recipeList;
     }
 
+    public RecipeAdapter getRecipeAdapter() {
+        return recipeAdapter;
+    }
+
+    public SearchAdapter getSearchAdapter() {
+        return searchAdapter;
+    }
+
     private void initializeRecipeList() {
         List<Recipe> recipes = AppDatabase.getInstance(this).recipeDao().getAllRecipe();
 
@@ -159,7 +136,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void replaceFragment(Class fragmentClass) {
-
         Fragment fragment = null;
         try {
             fragment = (Fragment) fragmentClass.newInstance();
