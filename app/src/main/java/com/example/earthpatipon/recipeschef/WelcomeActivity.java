@@ -21,7 +21,7 @@ public class WelcomeActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.welcome_text);
         imageView = (ImageView) findViewById(R.id.welcome_image);
 
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fade);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
         textView.startAnimation(animation);
         imageView.startAnimation(animation);
 
