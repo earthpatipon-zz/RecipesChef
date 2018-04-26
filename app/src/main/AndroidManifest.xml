@@ -21,7 +21,6 @@
         <activity android:name=".SignupActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".RecipeActivity" />
-        <activity android:name=".ProfileActivity"/>
     </application>
 
 </manifest>
