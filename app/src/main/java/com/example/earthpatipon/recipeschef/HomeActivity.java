@@ -3,9 +3,6 @@
  */
 package com.example.earthpatipon.recipeschef;
 
-import android.app.SearchManager;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -14,16 +11,12 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.earthpatipon.recipeschef.database.AppDatabase;
 import com.example.earthpatipon.recipeschef.entity.Recipe;
-import com.example.earthpatipon.recipeschef.utils.RecipeAdapter;
+import com.example.earthpatipon.recipeschef.utils.HomeAdapter;
 import com.example.earthpatipon.recipeschef.utils.RecipeCard;
 import com.example.earthpatipon.recipeschef.utils.SearchAdapter;
 
@@ -36,7 +29,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
     private Toolbar toolbar;
 
-    private RecipeAdapter recipeAdapter;
+    private HomeAdapter homeAdapter;
     private SearchAdapter searchAdapter;
 
     private List<RecipeCard> recipeList;
@@ -46,17 +39,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        recipeList = new ArrayList<>();
         initializeRecipeList();
-
-        recipeAdapter = new RecipeAdapter(this, recipeList);
-        searchAdapter = new SearchAdapter(this, recipeList);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer);
-        toggle = new ActionBarDrawerToggle(HomeActivity.this, drawer, R.string.action_open, R.string.action_close);
+        toggle = new ActionBarDrawerToggle(this, drawer, R.string.action_open, R.string.action_close);
 
         drawer.addDrawerListener(toggle);
         toggle.syncState();
@@ -90,9 +79,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         switch (id) {
             case R.id.home:
-                break;
-            case R.id.recipe:
-                replaceFragment(RecipeFragment.class);
+                replaceFragment(HomeFragment.class);
                 break;
             case R.id.search:
                 replaceFragment(SearchFragment.class);
@@ -115,8 +102,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         return recipeList;
     }
 
-    public RecipeAdapter getRecipeAdapter() {
-        return recipeAdapter;
+    public HomeAdapter getHomeAdapter() {
+        return homeAdapter;
     }
 
     public SearchAdapter getSearchAdapter() {
@@ -124,6 +111,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initializeRecipeList() {
+        recipeList = new ArrayList<>();
         List<Recipe> recipes = AppDatabase.getInstance(this).recipeDao().getAllRecipe();
 
         for (int i = 0; i < recipes.size(); i++) {
@@ -133,7 +121,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             card.setIsTurned(0);
             this.recipeList.add(card);
         }
+
+        homeAdapter = new HomeAdapter(this, recipeList);
+        searchAdapter = new SearchAdapter(this, recipeList);
+
+        replaceFragment(HomeFragment.class);
     }
+
 
     public void replaceFragment(Class fragmentClass) {
         Fragment fragment = null;

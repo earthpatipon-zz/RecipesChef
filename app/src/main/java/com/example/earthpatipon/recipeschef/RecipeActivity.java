@@ -78,9 +78,6 @@ public class RecipeActivity extends AppCompatActivity implements NavigationView.
             Intent intent = new Intent(RecipeActivity.this, HomeActivity.class);
             startActivity(intent);
         }
-        else if (id == R.id.recipe) {
-            ;
-        }
         else if (id == R.id.search) {
             //Intent intent = new Intent(RecipeActivity.this, SearchActivity.class);
             //startActivity(intent);

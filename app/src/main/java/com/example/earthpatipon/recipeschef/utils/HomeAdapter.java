@@ -9,8 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,15 +18,14 @@ import com.example.earthpatipon.recipeschef.R;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.RecipeViewHolder> {
 
     private Context context;
     private List<RecipeCard> recipeList;
 
-    public RecipeAdapter(Context context, List<RecipeCard> list) {
+    public HomeAdapter(Context context, List<RecipeCard> list) {
         this.context = context;
         this.recipeList = list;
     }

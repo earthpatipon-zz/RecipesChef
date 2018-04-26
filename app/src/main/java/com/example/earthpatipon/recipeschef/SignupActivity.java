@@ -26,8 +26,6 @@ public class SignupActivity extends AppCompatActivity {
     @BindView(R.id.input_confirmPassword) EditText confirmPasswordInput;
     @BindView(R.id.button_signup) Button signupButton;
 
-    //@BindView(R.id.button_back) Button backButton;
-
     private ProgressDialog progressDialog;
     private String userName;
     private String passWord;
@@ -49,18 +47,6 @@ public class SignupActivity extends AppCompatActivity {
                 signup();
             }
         });
-
-//        backButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Finish the registration screen and return to the Login activity
-//                Intent intent = new Intent(SignupActivity.this,LoginActivity.class);
-//                startActivity(intent);
-//                finish();
-//                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-//            }
-//        });
-
     }
 
     @Override
@@ -107,9 +93,6 @@ public class SignupActivity extends AppCompatActivity {
         startActivity(intent);
         finish(); // this method is to call the rest of android lifecycle component i.e, onDestroy
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-//        setResult(RESULT_OK, null);
-//        finish();
-        //intent to HomeActivity
     }
 
     public void onSignupFailed() {

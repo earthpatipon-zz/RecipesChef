@@ -19,14 +19,9 @@ import com.example.earthpatipon.recipeschef.utils.SearchAdapter;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SearchFragment extends Fragment {
 
     private List<RecipeCard> recipeList;
-    private Context context;
-
     private RecyclerView recyclerView;
     private SearchView searchView;
 
@@ -37,7 +32,6 @@ public class SearchFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = getActivity().getApplicationContext();
         setHasOptionsMenu(true); // Add option menu
     }
 
@@ -88,27 +82,4 @@ public class SearchFragment extends Fragment {
             }
         });
     }
-
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        inflater.inflate(R.menu.search_menu2, menu);
-//        super.onCreateOptionsMenu(menu, inflater);
-//        MenuItem searchItem = menu.findItem(R.id.action_search);
-//        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-//        searchView.setOnQueryTextListener(
-//                new SearchView.OnQueryTextListener() {
-//                    @Override
-//                    public boolean onQueryTextSubmit(String query) {
-//                        return false;
-//                    }
-//
-//                    @Override
-//                    public boolean onQueryTextChange(String newText) {
-//                        //adapter.getFilter().filter(newText);
-//                        return true;
-//                    }
-//                }
-//        );
-//
-//    }
 }
