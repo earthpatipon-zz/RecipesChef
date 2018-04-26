@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recipe, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
         LinearLayoutManager MyLayoutManager = new LinearLayoutManager(getActivity());
         MyLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
@@ -43,7 +43,7 @@ public class HomeFragment extends Fragment {
         homeAdapter = activity.getHomeAdapter();
         recipeList = activity.getRecipeList();
 
-        recyclerView = view.findViewById(R.id.RecipeCardView);
+        recyclerView = view.findViewById(R.id.homeRecycleView);
         recyclerView.setHasFixedSize(true);
 
         if (recipeList.size() > 0 & recyclerView != null) {

@@ -33,7 +33,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.RecipeViewHold
     @Override
     public RecipeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_recipe, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_home, parent, false);
         RecipeViewHolder holder = new RecipeViewHolder(context, view);
         return holder;
     }

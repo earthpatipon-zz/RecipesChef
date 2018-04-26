@@ -9,7 +9,7 @@
     tools:context=".SearchFragment">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/SearchCardView"
+        android:id="@+id/searchRecycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </RelativeLayout>

@@ -45,7 +45,7 @@ public class SearchFragment extends Fragment {
         searchAdapter = activity.getSearchAdapter();
         recipeList = activity.getRecipeList();
 
-        recyclerView = view.findViewById(R.id.SearchCardView);
+        recyclerView = view.findViewById(R.id.searchRecycleView);
         recyclerView.setHasFixedSize(true);
 
         if (recipeList.size() > 0 & recyclerView != null) {
