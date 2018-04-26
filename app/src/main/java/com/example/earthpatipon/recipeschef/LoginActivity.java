@@ -115,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
 
         progressDialog.dismiss();
         loginButton.setEnabled(true);
-        // *** must be fix to send value to MainActivity i,e user.
+        // TODO:  must be fix to send value to MainActivity i,e user.
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
         finish(); // this method is to call the rest of android lifecycle component i.e, onDestroy
