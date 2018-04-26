@@ -20,7 +20,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.RecipeViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
 
     private Context context;
     private List<RecipeCard> recipeList;
@@ -31,15 +31,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.RecipeViewHold
     }
 
     @Override
-    public RecipeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public HomeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_home, parent, false);
-        RecipeViewHolder holder = new RecipeViewHolder(context, view);
+        HomeViewHolder holder = new HomeViewHolder(context, view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(RecipeViewHolder holder, int position) {
+    public void onBindViewHolder(HomeViewHolder holder, int position) {
         String cardName = recipeList.get(position).getCardName();
         holder.titleTextView.setText(cardName);
         Bitmap bitmap;
@@ -59,14 +59,14 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.RecipeViewHold
         return recipeList.size();
     }
 
-    public class RecipeViewHolder extends RecyclerView.ViewHolder {
+    public class HomeViewHolder extends RecyclerView.ViewHolder {
 
         public TextView titleTextView;
         public ImageView coverImageView;
         public ImageView likeImageView;
         public ImageView shareImageView;
 
-        public RecipeViewHolder(final Context context, View v) {
+        public HomeViewHolder(final Context context, View v) {
             super(v);
             titleTextView = v.findViewById(R.id.titleTextView);
             coverImageView = v.findViewById(R.id.coverImageView);
