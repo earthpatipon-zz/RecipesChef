@@ -29,17 +29,19 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         LinearLayoutManager MyLayoutManager = new LinearLayoutManager(getActivity());
         MyLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        AppActivity activity = (AppActivity) getActivity();
+        MainActivity activity = (MainActivity) getActivity();
         homeAdapter = activity.getHomeAdapter();
         recipeList = activity.getRecipeList();
 

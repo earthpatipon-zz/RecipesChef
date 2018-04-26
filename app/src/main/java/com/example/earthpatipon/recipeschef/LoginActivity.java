@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.earthpatipon.recipeschef.database.AppDatabase;
 import com.example.earthpatipon.recipeschef.entity.User;
+import com.example.earthpatipon.recipeschef.utils.DatabaseInitializer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,12 +40,14 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+        initDatabase();
+
         // Bypass to wherever I want
         // TODO; remove from production code
         bypassButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, AppActivity.class));
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }
         });
 
@@ -80,7 +83,13 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void login() {
+    @Override
+    public void onBackPressed() {
+        // Disable going back to the WelcomeActivity as we started from WelcomeActivity
+        moveTaskToBack(true);
+    }
+
+    private void login() {
 
         if (!validate()) {
             onLoginFailed();
@@ -101,33 +110,26 @@ public class LoginActivity extends AppCompatActivity {
         new loginAsyncTask(this.userName, this.passWord).execute();
     }
 
-    @Override
-    public void onBackPressed() {
-
-        // Disable going back to the MainActivity as we started from MainActivity
-        moveTaskToBack(true);
-    }
-
     // This method is called when user is validated as passed
-    public void onLoginSuccess() {
+    private void onLoginSuccess() {
 
         progressDialog.dismiss();
         loginButton.setEnabled(true);
-        // *** must be fix to send value to AppActivity i,e user.
-        Intent intent = new Intent(getApplicationContext(), AppActivity.class);
+        // *** must be fix to send value to MainActivity i,e user.
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
         finish(); // this method is to call the rest of android lifecycle component i.e, onDestroy
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
     }
 
     // This method is called when user is validated as not passed
-    public void onLoginFailed() {
+    private void onLoginFailed() {
 
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
         loginButton.setEnabled(true);
     }
 
-    public boolean validate() {
+    private boolean validate() {
 
         boolean valid = true;
 
@@ -149,6 +151,14 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return valid;
+    }
+
+    private void initDatabase(){
+
+        //Init Context for Non-Activity class
+        DatabaseInitializer di = new DatabaseInitializer(this);
+        // Call DatabaseInitializer class to init dataset into database
+        di.populateAsync(AppDatabase.getInstance(this));
     }
 
     // A thread that will retrieve database to get data and further send it to validate

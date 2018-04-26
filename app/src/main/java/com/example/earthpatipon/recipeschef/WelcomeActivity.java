@@ -15,6 +15,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
@@ -25,7 +26,7 @@ public class WelcomeActivity extends AppCompatActivity {
         textView.startAnimation(animation);
         imageView.startAnimation(animation);
 
-        final Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+        final Intent intent = new Intent(this, LoginActivity.class);
 
         Thread timer = new Thread() {
             public void run() {

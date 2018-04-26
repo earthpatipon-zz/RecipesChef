@@ -51,12 +51,13 @@ public class SignupActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
         Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
 
-    public void signup() {
+    private void signup() {
 
         if (!validate()) {
             onSignupFailed();
@@ -77,7 +78,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
 
-    public void onSignupSuccess() {
+    private void onSignupSuccess() {
 
         new Thread(new Runnable() {
             @Override
@@ -95,13 +96,13 @@ public class SignupActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
     }
 
-    public void onSignupFailed() {
+    private void onSignupFailed() {
 
         Toast.makeText(getBaseContext(), "Signup failed", Toast.LENGTH_LONG).show();
         signupButton.setEnabled(true);
     }
 
-    public boolean validate() {
+    private boolean validate() {
 
         boolean valid = true;
 
