@@ -82,10 +82,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
             coverImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int id = (int) coverImageView.getTag();
                     Intent intent = new Intent(context.getApplicationContext(), RecipeActivity.class);
-                    context.startActivity(intent);
-                    //context.finish();
+                    //PACK DATA
+                    intent.putExtra("SENDER_KEY", "HomeFragment");
+                    intent.putExtra("NAME_KEY", titleTextView.getText().toString());
+
+                    //START ACTIVITY
+                    context.getApplicationContext().startActivity(intent);
                     //context.overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 }
             });
