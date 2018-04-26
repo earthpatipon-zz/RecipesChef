@@ -41,20 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         initRecipeList();
-
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        drawer = findViewById(R.id.drawer);
-        toggle = new ActionBarDrawerToggle(this, drawer, R.string.action_open, R.string.action_close);
-
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        NavigationView navigationView = findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        initToolbar();
     }
 
     @Override
@@ -133,8 +120,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         replaceFragment(HomeFragment.class);
     }
 
+    private void initToolbar(){
 
-    public void replaceFragment(Class fragmentClass) {
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawer = findViewById(R.id.drawer);
+        toggle = new ActionBarDrawerToggle(this, drawer, R.string.action_open, R.string.action_close);
+
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        NavigationView navigationView = findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+
+    private void replaceFragment(Class fragmentClass) {
 
         Fragment fragment = null;
         try {
