@@ -3,6 +3,7 @@
  */
 package com.example.earthpatipon.recipeschef;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -76,11 +77,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 replaceFragment(SearchFragment.class);
                 break;
             case R.id.profile:
-                //replaceFragment(ProfileFragment.class);
+                Intent profile_intent = new Intent(this, ProfileActivity.class);
+                startActivity(profile_intent);
                 break;
             case R.id.logout:
-//                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//                startActivity(intent);
+                Intent logout_intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(logout_intent);
                 break;
             default:
                 break;
@@ -124,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Home");
 
         drawer = findViewById(R.id.drawer);
         toggle = new ActionBarDrawerToggle(this, drawer, R.string.action_open, R.string.action_close);
