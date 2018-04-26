@@ -23,7 +23,7 @@ import com.example.earthpatipon.recipeschef.utils.SearchAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class AppActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActionBarDrawerToggle toggle;
     private DrawerLayout drawer;
@@ -37,7 +37,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_app);
 
         initializeRecipeList();
 
@@ -88,7 +88,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 //replaceFragment(ProfileFragment.class);
                 break;
             case R.id.logout:
-//                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+//                Intent intent = new Intent(AppActivity.this, LoginActivity.class);
 //                startActivity(intent);
                 break;
             default:

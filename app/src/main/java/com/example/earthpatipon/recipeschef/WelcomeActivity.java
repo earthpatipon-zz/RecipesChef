@@ -18,8 +18,8 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        textView = (TextView) findViewById(R.id.welcome_text);
-        imageView = (ImageView) findViewById(R.id.welcome_image);
+        textView = findViewById(R.id.welcome_text);
+        imageView = findViewById(R.id.welcome_image);
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
         textView.startAnimation(animation);

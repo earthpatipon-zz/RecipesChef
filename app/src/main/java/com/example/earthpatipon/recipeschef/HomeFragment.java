@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager MyLayoutManager = new LinearLayoutManager(getActivity());
         MyLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        HomeActivity activity = (HomeActivity) getActivity();
+        AppActivity activity = (AppActivity) getActivity();
         homeAdapter = activity.getHomeAdapter();
         recipeList = activity.getRecipeList();
 

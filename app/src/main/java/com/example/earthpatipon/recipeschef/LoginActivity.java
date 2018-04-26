@@ -3,7 +3,6 @@
  */
 package com.example.earthpatipon.recipeschef;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -45,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         bypassButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                startActivity(new Intent(LoginActivity.this, AppActivity.class));
             }
         });
 
@@ -114,8 +113,8 @@ public class LoginActivity extends AppCompatActivity {
 
         progressDialog.dismiss();
         loginButton.setEnabled(true);
-        // *** must be fix to send value to HomeActivity i,e user.
-        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+        // *** must be fix to send value to AppActivity i,e user.
+        Intent intent = new Intent(getApplicationContext(), AppActivity.class);
         startActivity(intent);
         finish(); // this method is to call the rest of android lifecycle component i.e, onDestroy
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);

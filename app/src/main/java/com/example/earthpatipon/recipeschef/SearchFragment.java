@@ -10,7 +10,6 @@ import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -41,7 +40,7 @@ public class SearchFragment extends Fragment {
         LinearLayoutManager MyLayoutManager = new LinearLayoutManager(getActivity());
         MyLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        HomeActivity activity = (HomeActivity) getActivity();
+        AppActivity activity = (AppActivity) getActivity();
         searchAdapter = activity.getSearchAdapter();
         recipeList = activity.getRecipeList();
 
