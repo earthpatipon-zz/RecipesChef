@@ -23,6 +23,9 @@
     <string name="fragment_profile">Profile</string>
     <string name="fragment_recipes">Recipes</string>
     <string name="fragment_logout">Logout</string>
+    <string name="fragment_editprofile">Edit Profile</string>
 
     <string name="dont_have_an_account">Don\'t have an account?</string>
+
+    <string name="usernameEx">Yok</string>
 </resources>
