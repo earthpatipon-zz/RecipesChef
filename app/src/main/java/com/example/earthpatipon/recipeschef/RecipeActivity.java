@@ -26,6 +26,7 @@ public class RecipeActivity extends AppCompatActivity implements NavigationView.
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //getSupportActionBar().setTitle("RecipeName");
 
         drawer = (DrawerLayout) findViewById(R.id.drawer);
         toggle = new ActionBarDrawerToggle(RecipeActivity.this, drawer, R.string.action_open, R.string.action_close);
