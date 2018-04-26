@@ -13,7 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.earthpatipon.recipeschef.MainActivity;
 import com.example.earthpatipon.recipeschef.R;
+import com.example.earthpatipon.recipeschef.RecipeActivity;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,12 +28,14 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
     private List<RecipeCard> recipeList;
 
     public HomeAdapter(Context context, List<RecipeCard> list) {
+
         this.context = context;
         this.recipeList = list;
     }
 
     @Override
     public HomeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         // create a new view
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_home, parent, false);
         HomeViewHolder holder = new HomeViewHolder(context, view);
@@ -40,14 +44,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
 
     @Override
     public void onBindViewHolder(HomeViewHolder holder, int position) {
+
         String cardName = recipeList.get(position).getCardName();
         holder.titleTextView.setText(cardName);
         Bitmap bitmap;
         try {
             // TODO: use (much, much) faster image loading library like Glide
             bitmap = BitmapFactory.decodeStream(new FileInputStream(new File(context.getFilesDir().getPath() + File.separator + "RecipeImages", cardName + ".png")));
-            holder.coverImageView.setImageBitmap(bitmap); //
-            holder.coverImageView.setTag(cardName.hashCode());
+            holder.coverImageView.setImageBitmap(bitmap);
+            holder.coverImageView.setTag(cardName); //setTag for identify which card user clicks on
             holder.likeImageView.setTag(R.drawable.ic_like);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -67,11 +72,23 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
         public ImageView shareImageView;
 
         public HomeViewHolder(final Context context, View v) {
+
             super(v);
             titleTextView = v.findViewById(R.id.titleTextView);
             coverImageView = v.findViewById(R.id.coverImageView);
             likeImageView = v.findViewById(R.id.likeImageView);
             shareImageView = v.findViewById(R.id.shareImageView);
+
+            coverImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int id = (int) coverImageView.getTag();
+                    Intent intent = new Intent(context.getApplicationContext(), RecipeActivity.class);
+                    context.startActivity(intent);
+                    //context.finish();
+                    //context.overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                }
+            });
 
             likeImageView.setOnClickListener(new View.OnClickListener() {
                 @Override

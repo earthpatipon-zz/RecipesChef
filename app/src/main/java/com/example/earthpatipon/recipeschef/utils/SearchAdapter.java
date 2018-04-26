@@ -21,12 +21,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> implements Filterable{
+
     private Context context;
     private List<RecipeCard> recipeList;
     private List<RecipeCard> recipeListFiltered;
 
 
     public SearchAdapter(Context context, List<RecipeCard> list) {
+
         this.context = context;
         this.recipeList = list;
         this.recipeListFiltered = list;
@@ -34,6 +36,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @Override
     public SearchViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         // create a new view
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_search, parent, false);
         SearchViewHolder holder = new SearchViewHolder(context, view);
@@ -42,6 +45,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @Override
     public void onBindViewHolder(SearchViewHolder holder, int position) {
+
         String cardName = recipeListFiltered.get(position).getCardName();
         holder.titleTextView.setText(cardName);
         Bitmap bitmap;
@@ -74,7 +78,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                             filteredList.add(row);
                         }
                     }
-
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = filteredList;
                 filterResults.count = filteredList.size();
