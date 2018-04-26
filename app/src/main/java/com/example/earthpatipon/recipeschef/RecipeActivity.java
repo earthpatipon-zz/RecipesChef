@@ -21,6 +21,7 @@ public class RecipeActivity extends AppCompatActivity implements NavigationView.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
@@ -76,7 +77,7 @@ public class RecipeActivity extends AppCompatActivity implements NavigationView.
         int id = item.getItemId();
 
         if (id == R.id.home) {
-            Intent intent = new Intent(RecipeActivity.this, HomeActivity.class);
+            Intent intent = new Intent(RecipeActivity.this, MainActivity.class);
             startActivity(intent);
         }
         else if (id == R.id.search) {

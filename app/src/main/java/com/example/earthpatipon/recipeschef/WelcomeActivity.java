@@ -15,17 +15,18 @@ public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        textView = (TextView) findViewById(R.id.welcome_text);
-        imageView = (ImageView) findViewById(R.id.welcome_image);
+        textView = findViewById(R.id.welcome_text);
+        imageView = findViewById(R.id.welcome_image);
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
         textView.startAnimation(animation);
         imageView.startAnimation(animation);
 
-        final Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+        final Intent intent = new Intent(this, LoginActivity.class);
 
         Thread timer = new Thread() {
             public void run() {
