@@ -3,35 +3,45 @@
  */
 package com.example.earthpatipon.recipeschef;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
+import com.example.earthpatipon.recipeschef.database.AppDatabase;
+import com.example.earthpatipon.recipeschef.entity.Recipe;
 
 public class RecipeActivity extends AppCompatActivity {
 
-    private DrawerLayout drawer;
-    private ActionBarDrawerToggle toggle;
-    private Toolbar toolbar;
+    private Recipe recipeCurrent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
-        
+
+        getRecipeOnClick();
     }
 
     @Override
     public void onBackPressed() {
 
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish(); // this method is to call the rest of android lifecycle component i.e, onDestroy
+        //overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+    }
+
+    private void getRecipeOnClick(){
+
+        String recipeName = "";
+
+        final String sender = this.getIntent().getExtras().getString("SENDER_KEY");
+        if (sender != null) {
+            Intent intent = getIntent();
+            recipeName = intent.getStringExtra("NAME_KEY");
         }
-        else {
-            super.onBackPressed();
-        }
+
+        recipeCurrent = AppDatabase.getInstance(getApplicationContext()).recipeDao().getRecipe(recipeName);
     }
 }
