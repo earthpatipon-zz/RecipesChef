@@ -20,11 +20,14 @@ public interface UserLikeDao {
     @Query("SELECT * FROM UserLike")
     List<UserLike> getAllLike();
 
-    @Query("SELECT * FROM UserLike WHERE UserID= :userID")
+    @Query("SELECT * FROM UserLike WHERE UserID = :userID")
     List<UserLike> findByUserID(int userID);
 
-    @Query("SELECT * FROM UserLike WHERE UserID= :recipeID")
+    @Query("SELECT * FROM UserLike WHERE UserID = :recipeID")
     List<UserLike> findByRecipeID(int recipeID);
+
+    @Query("DELETE FROM UserLike WHERE UserID = :userID and RecipeID = :recipeID")
+    void delete(int userID, int recipeID);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(UserLike like);

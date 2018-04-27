@@ -1,7 +1,7 @@
 /* Group: Aoong Aoong
  * Members: Tanaporn 5888124, Kanjanaporn 5888178, Patipon 5888218
  */
-package com.example.earthpatipon.recipeschef;
+package com.example.earthpatipon.recipeschef.Fragment;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -16,8 +16,10 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.earthpatipon.recipeschef.utils.RecipeCard;
-import com.example.earthpatipon.recipeschef.utils.SearchAdapter;
+import com.example.earthpatipon.recipeschef.MainActivity;
+import com.example.earthpatipon.recipeschef.R;
+import com.example.earthpatipon.recipeschef.entity.RecipeCard;
+import com.example.earthpatipon.recipeschef.Adapter.SearchAdapter;
 
 import java.util.List;
 

@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setEnabled(true);
 
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        //PACK DATA
+        // Pack data
         intent.putExtra("SENDER_KEY", "LoginActivity");
         intent.putExtra("NAME_KEY", userName);
 
@@ -155,10 +155,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initDatabase(){
 
-        //Init Context for Non-Activity class
         DatabaseInitializer di = new DatabaseInitializer(this);
-        // Call DatabaseInitializer class to init dataset into database
-        di.populateAsync(AppDatabase.getInstance(this));
+        di.populateAsync(AppDatabase.getInstance(this)); // Call DatabaseInitializer class to init dataset into database
     }
 
     // A thread that will retrieve database to get data and further send it to validate
@@ -205,7 +203,6 @@ public class LoginActivity extends AppCompatActivity {
             }
             else{
                 Toast.makeText(getBaseContext(),  "This username doesn't exist, try to signup first!", Toast.LENGTH_LONG).show();
-                //can set some interval
                 progressDialog.dismiss();
             }
             loginButton.setEnabled(true);

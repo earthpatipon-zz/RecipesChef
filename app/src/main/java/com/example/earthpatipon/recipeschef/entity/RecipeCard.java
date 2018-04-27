@@ -1,4 +1,4 @@
-package com.example.earthpatipon.recipeschef.utils;
+package com.example.earthpatipon.recipeschef.entity;
 
 public class RecipeCard {
 

@@ -14,14 +14,15 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
+import com.example.earthpatipon.recipeschef.Fragment.HomeFragment;
+import com.example.earthpatipon.recipeschef.Fragment.SearchFragment;
 import com.example.earthpatipon.recipeschef.database.AppDatabase;
 import com.example.earthpatipon.recipeschef.entity.Recipe;
 import com.example.earthpatipon.recipeschef.entity.User;
-import com.example.earthpatipon.recipeschef.utils.HomeAdapter;
-import com.example.earthpatipon.recipeschef.utils.RecipeCard;
-import com.example.earthpatipon.recipeschef.utils.SearchAdapter;
+import com.example.earthpatipon.recipeschef.Adapter.HomeAdapter;
+import com.example.earthpatipon.recipeschef.entity.RecipeCard;
+import com.example.earthpatipon.recipeschef.Adapter.SearchAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +46,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getCurrentUser();
-        initRecipeList();
-        initToolbar();
+        getCurrentUser(); // get User session
+        initRecipeList(); // get list of Recipe
+        initToolbar(); // get Toolbar
     }
 
     @Override
@@ -95,18 +96,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    public List<RecipeCard> getRecipeList() {
-        return recipeList;
-    }
-
-    public HomeAdapter getHomeAdapter() {
-        return homeAdapter;
-    }
-
-    public SearchAdapter getSearchAdapter() {
-        return searchAdapter;
-    }
-
     private void getCurrentUser() {
 
         String userName = "";
@@ -134,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             this.recipeList.add(card);
         }
 
-        homeAdapter = new HomeAdapter(this, recipeList);
+        homeAdapter = new HomeAdapter(this, recipeList, user);
         searchAdapter = new SearchAdapter(this, recipeList);
 
         replaceFragment(HomeFragment.class);
@@ -170,6 +159,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
+    }
+
+    public User getUser(){ return user; }
+
+    public List<RecipeCard> getRecipeList() {
+        return recipeList;
+    }
+
+    public HomeAdapter getHomeAdapter() {
+        return homeAdapter;
+    }
+
+    public SearchAdapter getSearchAdapter() {
+        return searchAdapter;
     }
 }
 

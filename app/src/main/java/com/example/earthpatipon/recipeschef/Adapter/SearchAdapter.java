@@ -1,12 +1,10 @@
 /* Group: Aoong Aoong
  * Members: Tanaporn 5888124, Kanjanaporn 5888178, Patipon 5888218
  */
-package com.example.earthpatipon.recipeschef.utils;
+package com.example.earthpatipon.recipeschef.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,10 +19,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.earthpatipon.recipeschef.R;
 import com.example.earthpatipon.recipeschef.RecipeActivity;
+import com.example.earthpatipon.recipeschef.entity.RecipeCard;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 

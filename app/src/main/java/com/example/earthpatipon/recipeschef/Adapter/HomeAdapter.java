@@ -1,14 +1,13 @@
 /* Group: Aoong Aoong
  * Members: Tanaporn 5888124, Kanjanaporn 5888178, Patipon 5888218
  */
-package com.example.earthpatipon.recipeschef.utils;
+package com.example.earthpatipon.recipeschef.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,21 +19,25 @@ import com.bumptech.glide.Glide;
 import com.example.earthpatipon.recipeschef.MainActivity;
 import com.example.earthpatipon.recipeschef.R;
 import com.example.earthpatipon.recipeschef.RecipeActivity;
+import com.example.earthpatipon.recipeschef.database.AppDatabase;
+import com.example.earthpatipon.recipeschef.entity.RecipeCard;
+import com.example.earthpatipon.recipeschef.entity.User;
+import com.example.earthpatipon.recipeschef.entity.UserLike;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
 
     private Context context;
     private List<RecipeCard> recipeList;
+    private User user;
 
-    public HomeAdapter(Context context, List<RecipeCard> list) {
+    public HomeAdapter(Context context, List<RecipeCard> list, User user) {
 
         this.context = context;
         this.recipeList = list;
+        this.user = user;
     }
 
     @Override
@@ -43,6 +46,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
         // create a new view
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_home, parent, false);
         HomeViewHolder holder = new HomeViewHolder(context, view);
+
         return holder;
     }
 
@@ -55,6 +59,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
         Glide.with(context).load(imageUri).into(holder.coverImageView);
 
         holder.titleTextView.setText(cardName);
+
+
         holder.likeImageView.setTag(R.drawable.ic_like);
     }
 
@@ -85,9 +91,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
                     //PACK DATA
                     intent.putExtra("SENDER_KEY", "HomeFragment");
                     intent.putExtra("NAME_KEY", titleTextView.getText().toString());
-                    //START ACTIVITY
+
                     context.getApplicationContext().startActivity(intent);
-                    //context.overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 }
             });
 
@@ -99,10 +104,21 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
                         likeImageView.setTag(R.drawable.ic_liked);
                         likeImageView.setImageResource(R.drawable.ic_liked);
                         Toast.makeText(context, titleTextView.getText() + " added to favourites", Toast.LENGTH_SHORT).show();
+
+                        // Record user like
+                        int userID = user.getUserID();
+                        int recipeID = AppDatabase.getInstance(context).recipeDao().getRecipe(titleTextView.getText().toString()).getRecipeID();
+                        UserLike userLike = new UserLike(userID, recipeID);
+                        AppDatabase.getInstance(context).userLikeDao().insert(userLike);
                     } else {
                         likeImageView.setTag(R.drawable.ic_like);
                         likeImageView.setImageResource(R.drawable.ic_like);
                         Toast.makeText(context, titleTextView.getText() + " removed from favourites", Toast.LENGTH_SHORT).show();
+
+                        // De-Record user like
+                        int userID = user.getUserID();
+                        int recipeID = AppDatabase.getInstance(context).recipeDao().getRecipe(titleTextView.getText().toString()).getRecipeID();
+                        AppDatabase.getInstance(context).userLikeDao().delete(userID, recipeID);
                     }
                 }
             });
