@@ -1,11 +1,13 @@
-package com.example.earthpatipon.recipeschef.utils;
+/* Group: Aoong Aoong
+ * Members: Tanaporn 5888124, Kanjanaporn 5888178, Patipon 5888218
+ */
+package com.example.earthpatipon.recipeschef.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,24 +15,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.earthpatipon.recipeschef.MainActivity;
+import com.bumptech.glide.Glide;
 import com.example.earthpatipon.recipeschef.R;
 import com.example.earthpatipon.recipeschef.RecipeActivity;
+import com.example.earthpatipon.recipeschef.database.AppDatabase;
+import com.example.earthpatipon.recipeschef.entity.RecipeCard;
+import com.example.earthpatipon.recipeschef.entity.User;
+import com.example.earthpatipon.recipeschef.entity.UserLike;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
 
     private Context context;
-    private List<RecipeCard> recipeList;
+    private List<RecipeCard> cardList;
+    private User user;
 
-    public HomeAdapter(Context context, List<RecipeCard> list) {
+    public HomeAdapter(Context context, List<RecipeCard> list, User user) {
 
         this.context = context;
-        this.recipeList = list;
+        this.cardList = list;
+        this.user = user;
     }
 
     @Override
@@ -39,29 +45,32 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
         // create a new view
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_home, parent, false);
         HomeViewHolder holder = new HomeViewHolder(context, view);
+
         return holder;
     }
 
     @Override
     public void onBindViewHolder(HomeViewHolder holder, int position) {
 
-        String cardName = recipeList.get(position).getCardName();
+        String cardName = cardList.get(position).getCardName();
+        File file = new File(context.getFilesDir().getPath() + File.separator + "RecipeImages",cardName + ".png");
+        Uri imageUri = Uri.fromFile(file);
+        Glide.with(context).load(imageUri).into(holder.coverImageView);
+
         holder.titleTextView.setText(cardName);
-        Bitmap bitmap;
-        try {
-            // TODO: use (much, much) faster image loading library like Glide
-            bitmap = BitmapFactory.decodeStream(new FileInputStream(new File(context.getFilesDir().getPath() + File.separator + "RecipeImages", cardName + ".png")));
-            holder.coverImageView.setImageBitmap(bitmap);
-            holder.coverImageView.setTag(cardName); //setTag for identify which card user clicks on
+
+        if(cardList.get(position).getIsLiked() == 1) { // Liked
+            holder.likeImageView.setImageResource(R.drawable.ic_liked);
+            holder.likeImageView.setTag(R.drawable.ic_liked);
+        } else { // Not Liked
             holder.likeImageView.setTag(R.drawable.ic_like);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
+
     }
 
     @Override
     public int getItemCount() {
-        return recipeList.size();
+        return cardList.size();
     }
 
     public class HomeViewHolder extends RecyclerView.ViewHolder {
@@ -87,9 +96,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
                     intent.putExtra("SENDER_KEY", "HomeFragment");
                     intent.putExtra("NAME_KEY", titleTextView.getText().toString());
 
-                    //START ACTIVITY
                     context.getApplicationContext().startActivity(intent);
-                    //context.overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 }
             });
 
@@ -101,10 +108,21 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
                         likeImageView.setTag(R.drawable.ic_liked);
                         likeImageView.setImageResource(R.drawable.ic_liked);
                         Toast.makeText(context, titleTextView.getText() + " added to favourites", Toast.LENGTH_SHORT).show();
+
+                        // Record user like
+                        int userID = user.getUserID();
+                        int recipeID = AppDatabase.getInstance(context).recipeDao().getRecipe(titleTextView.getText().toString()).getRecipeID();
+                        UserLike userLike = new UserLike(userID, recipeID);
+                        AppDatabase.getInstance(context).userLikeDao().insert(userLike);
                     } else {
                         likeImageView.setTag(R.drawable.ic_like);
                         likeImageView.setImageResource(R.drawable.ic_like);
                         Toast.makeText(context, titleTextView.getText() + " removed from favourites", Toast.LENGTH_SHORT).show();
+
+                        // De-Record user like
+                        int userID = user.getUserID();
+                        int recipeID = AppDatabase.getInstance(context).recipeDao().getRecipe(titleTextView.getText().toString()).getRecipeID();
+                        AppDatabase.getInstance(context).userLikeDao().delete(userID, recipeID);
                     }
                 }
             });

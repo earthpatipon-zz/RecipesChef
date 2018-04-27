@@ -36,6 +36,5 @@
 
     // TODO: Delete this shit in product version
     <string name="button_bypass">Button</string>
-    <string name="button_bypass2">Button2</string>
 
 </resources>

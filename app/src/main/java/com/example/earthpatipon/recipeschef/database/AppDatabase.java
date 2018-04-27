@@ -10,18 +10,20 @@ import android.content.Context;
 
 import com.example.earthpatipon.recipeschef.dao.RecipeDao;
 import com.example.earthpatipon.recipeschef.dao.UserDao;
+import com.example.earthpatipon.recipeschef.dao.UserLikeDao;
 import com.example.earthpatipon.recipeschef.entity.Recipe;
 import com.example.earthpatipon.recipeschef.entity.User;
+import com.example.earthpatipon.recipeschef.entity.UserLike;
 
 // Database class using Room to create
-@Database(entities = {User.class, Recipe.class}, version = 1, exportSchema = false)
+@Database(entities = {Recipe.class, User.class, UserLike.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
 
     public abstract RecipeDao recipeDao();
-
     public abstract UserDao userDao();
+    public abstract UserLikeDao userLikeDao();
 
     // Singleton design pattern
     public static AppDatabase getInstance(Context context) {
@@ -37,5 +39,4 @@ public abstract class AppDatabase extends RoomDatabase {
     public static void destroyInstance() {
         INSTANCE = null;
     }
-
 }

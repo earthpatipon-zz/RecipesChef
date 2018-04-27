@@ -6,6 +6,7 @@ package com.example.earthpatipon.recipeschef;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.earthpatipon.recipeschef.database.AppDatabase;
 import com.example.earthpatipon.recipeschef.entity.Recipe;
 
@@ -47,13 +49,9 @@ public class RecipeActivity extends AppCompatActivity {
 
         getCurrentRecipe();
 
-        try {
-            Bitmap bitmap;
-            bitmap = BitmapFactory.decodeStream(new FileInputStream(new File(getFilesDir().getPath() + File.separator + "RecipeImages", recipe.getRecipeName() + ".png")));
-            recipeImage.setImageBitmap(bitmap);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        File file = new File(getFilesDir().getPath() + File.separator + "RecipeImages",recipe.getRecipeName() + ".png");
+        Uri imageUri = Uri.fromFile(file);
+        Glide.with(this).load(imageUri).into(recipeImage);
 
         recipeName.setText(recipe.getRecipeName());
         recipeDesciption.setText(recipe.getDescription());

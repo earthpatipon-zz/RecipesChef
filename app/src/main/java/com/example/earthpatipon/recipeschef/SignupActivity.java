@@ -90,6 +90,8 @@ public class SignupActivity extends AppCompatActivity {
 
         signupButton.setEnabled(true);
 
+        Toast.makeText(getBaseContext(), "Sign up Successfully", Toast.LENGTH_LONG).show();
+
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
         finish(); // this method is to call the rest of android lifecycle component i.e, onDestroy
@@ -98,7 +100,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private void onSignupFailed() {
 
-        Toast.makeText(getBaseContext(), "Signup failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Sign up failed", Toast.LENGTH_LONG).show();
         signupButton.setEnabled(true);
     }
 

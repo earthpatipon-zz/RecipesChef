@@ -1,6 +1,7 @@
-package com.example.earthpatipon.recipeschef;
-
-
+/* Group: Aoong Aoong
+ * Members: Tanaporn 5888124, Kanjanaporn 5888178, Patipon 5888218
+ */
+package com.example.earthpatipon.recipeschef.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.earthpatipon.recipeschef.utils.HomeAdapter;
-import com.example.earthpatipon.recipeschef.utils.RecipeCard;
+import com.example.earthpatipon.recipeschef.Adapter.HomeAdapter;
+import com.example.earthpatipon.recipeschef.MainActivity;
+import com.example.earthpatipon.recipeschef.R;
+import com.example.earthpatipon.recipeschef.entity.RecipeCard;
 
 import java.util.List;
 
@@ -43,7 +46,7 @@ public class HomeFragment extends Fragment {
 
         MainActivity activity = (MainActivity) getActivity();
         homeAdapter = activity.getHomeAdapter();
-        recipeList = activity.getRecipeList();
+        recipeList = activity.getCardList();
 
         recyclerView = view.findViewById(R.id.homeRecycleView);
         recyclerView.setHasFixedSize(true);
@@ -54,5 +57,4 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(MyLayoutManager);
         return view;
     }
-
 }
