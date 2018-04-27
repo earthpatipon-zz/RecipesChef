@@ -74,9 +74,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 replaceFragment(HomeFragment.class);
                 break;
             case R.id.search:
+                getSupportActionBar().setTitle("Search");
                 replaceFragment(SearchFragment.class);
                 break;
             case R.id.profile:
+                getSupportActionBar().setTitle("Profile");
+                replaceFragment(ProfileFragment.class);
                 break;
             case R.id.logout:
                 Intent logout_intent = new Intent(MainActivity.this, LoginActivity.class);
