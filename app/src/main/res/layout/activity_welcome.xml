@@ -14,8 +14,8 @@
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/welcome_image"
-            android:layout_width="205dp"
-            android:layout_height="225dp"
+            android:layout_width="246dp"
+            android:layout_height="194dp"
             android:layout_gravity="center"
             android:paddingTop="10dp"
             android:src="@mipmap/ic_launcher_logo" />
