@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.earthpatipon.recipeschef.MainActivity;
 import com.example.earthpatipon.recipeschef.R;
 import com.example.earthpatipon.recipeschef.RecipeActivity;
@@ -45,18 +46,18 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
     @Override
     public void onBindViewHolder(HomeViewHolder holder, int position) {
 
+        //Bitmap bitmap;
+        //bitmap = BitmapFactory.decodeStream(new FileInputStream(new File(context.getFilesDir().getPath() + File.separator + "RecipeImages", cardName + ".png")));
+        //holder.coverImageView.setImageBitmap(bitmap);
+
         String cardName = recipeList.get(position).getCardName();
+        File file = new File(context.getFilesDir().getPath() + File.separator + "RecipeImages",cardName + ".png");
+        Uri imageUri = Uri.fromFile(file);
+        Glide.with(context).load(imageUri).into(holder.coverImageView);
+
         holder.titleTextView.setText(cardName);
-        Bitmap bitmap;
-        try {
-            // TODO: use (much, much) faster image loading library like Glide
-            bitmap = BitmapFactory.decodeStream(new FileInputStream(new File(context.getFilesDir().getPath() + File.separator + "RecipeImages", cardName + ".png")));
-            holder.coverImageView.setImageBitmap(bitmap);
-            holder.coverImageView.setTag(cardName); //setTag for identify which card user clicks on
-            holder.likeImageView.setTag(R.drawable.ic_like);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        //holder.coverImageView.setTag(cardName); //setTag for identify which card user clicks on
+        //holder.likeImageView.setTag(R.drawable.ic_like);
     }
 
     @Override

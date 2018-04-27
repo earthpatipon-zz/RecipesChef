@@ -1,8 +1,10 @@
 package com.example.earthpatipon.recipeschef.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +12,12 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.earthpatipon.recipeschef.R;
+import com.example.earthpatipon.recipeschef.RecipeActivity;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -46,16 +51,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     @Override
     public void onBindViewHolder(SearchViewHolder holder, int position) {
 
-        String cardName = recipeListFiltered.get(position).getCardName();
+        String cardName = recipeList.get(position).getCardName();
+        File file = new File(context.getFilesDir().getPath() + File.separator + "RecipeImages",cardName + ".png");
+        Uri imageUri = Uri.fromFile(file);
+        Glide.with(context).load(imageUri).into(holder.thumbnailView);
+
         holder.titleTextView.setText(cardName);
-        Bitmap bitmap;
-        try {
-            // TODO: use (much, much) faster image loading library like Glide
-            bitmap = BitmapFactory.decodeStream(new FileInputStream(new File(context.getFilesDir().getPath() + File.separator + "RecipeImages", cardName + ".png")));
-            holder.thumbnailView.setImageBitmap(bitmap);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -96,11 +97,28 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
         public TextView titleTextView;
         public ImageView thumbnailView;
+        public RelativeLayout semiCardView;
 
         public SearchViewHolder(final Context context, View v) {
             super(v);
             titleTextView = v.findViewById(R.id.titleTextView);
             thumbnailView = v.findViewById(R.id.thumbnailView);
+            semiCardView = v.findViewById(R.id.semiCardView);
+
+            semiCardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context.getApplicationContext(), RecipeActivity.class);
+                    //PACK DATA
+                    intent.putExtra("SENDER_KEY", "HomeFragment");
+                    intent.putExtra("NAME_KEY", titleTextView.getText().toString());
+                    //START ACTIVITY
+                    context.getApplicationContext().startActivity(intent);
+                    //context.overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                }
+            });
         }
+
+
     }
 }
