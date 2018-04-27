@@ -9,13 +9,19 @@
 
     <string name="usernameText">Username</string>
     <string name="passwordText">Password</string>
-    <string name="emailText">Email</string>
     <string name="confirmPassText">Confirm Password</string>
+    <string name="emailText">Email</string>
+    <string name="recipe_name">name</string>
+    <string name="recipe_description">description</string>
+    <string name="recipe_difficulty">difficulty</string>
+    <string name="recipe_time">time</string>
+    <string name="recipe_serve">serve</string>
+    <string name="recipe_ingredient">ingredient</string>
+    <string name="recipe_instruction">instruction</string>
+    <string name="recipe_category">category</string>
 
     <string name="button_login">Login</string>
     <string name="button_signup">Signup</string>
-    <string name="button_bypass">Button</string>
-    <string name="button_bypass2">Button2</string>
     <string name="head_signup">Sign up</string>
 
     <string name="activity_home">Home</string>
@@ -27,5 +33,9 @@
 
     <string name="dont_have_an_account">Don\'t have an account?</string>
 
-    <string name="usernameEx">Yok</string>
+
+    // TODO: Delete this shit in product version
+    <string name="button_bypass">Button</string>
+    <string name="button_bypass2">Button2</string>
+
 </resources>
