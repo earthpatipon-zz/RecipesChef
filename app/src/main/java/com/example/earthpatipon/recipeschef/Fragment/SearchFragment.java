@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -58,6 +59,7 @@ public class SearchFragment extends Fragment {
             recyclerView.setAdapter(searchAdapter);
         }
         recyclerView.setLayoutManager(MyLayoutManager);
+        recyclerView.setVisibility(View.INVISIBLE);
         return view;
     }
 
@@ -84,7 +86,13 @@ public class SearchFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String query) {
                 // filter recycler view when text is changed
-                searchAdapter.getFilter().filter(query);
+                if(query.length() == 0){
+                    recyclerView.setVisibility(View.INVISIBLE);
+                }
+                else{
+                    recyclerView.setVisibility(View.VISIBLE);
+                    searchAdapter.getFilter().filter(query);
+                }
                 return true;
             }
         });
