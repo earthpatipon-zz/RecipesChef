@@ -13,17 +13,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 
+import com.example.earthpatipon.recipeschef.Adapter.HomeAdapter;
+import com.example.earthpatipon.recipeschef.Adapter.SearchAdapter;
 import com.example.earthpatipon.recipeschef.Fragment.HomeFragment;
 import com.example.earthpatipon.recipeschef.Fragment.SearchFragment;
 import com.example.earthpatipon.recipeschef.database.AppDatabase;
 import com.example.earthpatipon.recipeschef.entity.Recipe;
-import com.example.earthpatipon.recipeschef.entity.User;
-import com.example.earthpatipon.recipeschef.Adapter.HomeAdapter;
 import com.example.earthpatipon.recipeschef.entity.RecipeCard;
-import com.example.earthpatipon.recipeschef.Adapter.SearchAdapter;
+import com.example.earthpatipon.recipeschef.entity.User;
 import com.example.earthpatipon.recipeschef.entity.UserLike;
 
 import java.util.ArrayList;
@@ -86,12 +85,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 replaceFragment(SearchFragment.class);
                 break;
             case R.id.profile:
-<<<<<<< HEAD
                 getSupportActionBar().setTitle("Profile");
                 replaceFragment(ProfileFragment.class);
-=======
-                //replaceFragment(ProfileFragment.class);
->>>>>>> 37ce86c0f574e039d12f5574bd181bd8385b0c7e
                 break;
             case R.id.logout:
                 Intent logout_intent = new Intent(MainActivity.this, LoginActivity.class);
