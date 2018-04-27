@@ -1,3 +1,6 @@
+/* Group: Aoong Aoong
+ * Members: Tanaporn 5888124, Kanjanaporn 5888178, Patipon 5888218
+ */
 package com.example.earthpatipon.recipeschef.utils;
 
 import android.content.Context;
@@ -46,18 +49,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
     @Override
     public void onBindViewHolder(HomeViewHolder holder, int position) {
 
-        //Bitmap bitmap;
-        //bitmap = BitmapFactory.decodeStream(new FileInputStream(new File(context.getFilesDir().getPath() + File.separator + "RecipeImages", cardName + ".png")));
-        //holder.coverImageView.setImageBitmap(bitmap);
-
         String cardName = recipeList.get(position).getCardName();
         File file = new File(context.getFilesDir().getPath() + File.separator + "RecipeImages",cardName + ".png");
         Uri imageUri = Uri.fromFile(file);
         Glide.with(context).load(imageUri).into(holder.coverImageView);
 
         holder.titleTextView.setText(cardName);
-        //holder.coverImageView.setTag(cardName); //setTag for identify which card user clicks on
-        //holder.likeImageView.setTag(R.drawable.ic_like);
+        holder.likeImageView.setTag(R.drawable.ic_like);
     }
 
     @Override
@@ -87,7 +85,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
                     //PACK DATA
                     intent.putExtra("SENDER_KEY", "HomeFragment");
                     intent.putExtra("NAME_KEY", titleTextView.getText().toString());
-
                     //START ACTIVITY
                     context.getApplicationContext().startActivity(intent);
                     //context.overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);

@@ -1,6 +1,7 @@
+/* Group: Aoong Aoong
+ * Members: Tanaporn 5888124, Kanjanaporn 5888178, Patipon 5888218
+ */
 package com.example.earthpatipon.recipeschef;
-
-
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

@@ -12,7 +12,7 @@ public class User {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "UserID")
-    private int userId;
+    private int userID;
     @ColumnInfo(name = "Username")
     private String userName;
     @ColumnInfo(name = "Password")
@@ -29,12 +29,12 @@ public class User {
     /**
      * Getters and Setters
      */
-    public int getUserId() {
-        return userId;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserID(int userId) {
+        this.userID = userId;
     }
 
     public String getUserName() {

@@ -14,9 +14,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.earthpatipon.recipeschef.database.AppDatabase;
 import com.example.earthpatipon.recipeschef.entity.Recipe;
+import com.example.earthpatipon.recipeschef.entity.User;
 import com.example.earthpatipon.recipeschef.utils.HomeAdapter;
 import com.example.earthpatipon.recipeschef.utils.RecipeCard;
 import com.example.earthpatipon.recipeschef.utils.SearchAdapter;
@@ -35,12 +37,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private List<RecipeCard> recipeList;
 
+    private User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getCurrentUser();
         initRecipeList();
         initToolbar();
     }
@@ -77,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 replaceFragment(SearchFragment.class);
                 break;
             case R.id.profile:
+                //replaceFragment(ProfileFragment.class);
                 break;
             case R.id.logout:
                 Intent logout_intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -101,8 +107,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return searchAdapter;
     }
 
+    private void getCurrentUser() {
+
+        String userName = "";
+
+        final String sender = this.getIntent().getExtras().getString("SENDER_KEY");
+        if (sender != null) {
+            Intent intent = getIntent();
+            userName = intent.getStringExtra("NAME_KEY");
+        }
+
+        user = AppDatabase.getInstance(getApplicationContext()).userDao().findByName(userName);
+    }
+
     private void initRecipeList() {
 
+        // TODO : Auto-filled like button for user
         recipeList = new ArrayList<>();
         List<Recipe> recipes = AppDatabase.getInstance(this).recipeDao().getAllRecipe();
 

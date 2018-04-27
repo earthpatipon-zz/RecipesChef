@@ -27,7 +27,6 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.button_login) Button loginButton;
     @BindView(R.id.button_signup) Button signupButton;
     @BindView(R.id.button_bypass) Button bypassButton;
-    @BindView(R.id.button_bypass2) Button bypassButton2;
 
     private ProgressDialog progressDialog;
     private String userName;
@@ -47,15 +46,12 @@ public class LoginActivity extends AppCompatActivity {
         bypassButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            }
-        });
-
-        // TODO; remove from production code
-        bypassButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, RecipeActivity.class));
+                userName = "bypass";
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                //PACK DATA
+                intent.putExtra("SENDER_KEY", "Bypass");
+                intent.putExtra("NAME_KEY", userName);
+                startActivity(intent);
             }
         });
 
@@ -85,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
         // Disable going back to the WelcomeActivity as we started from WelcomeActivity
         moveTaskToBack(true);
     }
@@ -115,10 +112,13 @@ public class LoginActivity extends AppCompatActivity {
 
         progressDialog.dismiss();
         loginButton.setEnabled(true);
-        // TODO:  must be fix to send value to MainActivity i,e user.
+
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        //PACK DATA
+        intent.putExtra("SENDER_KEY", "LoginActivity");
+        intent.putExtra("NAME_KEY", userName);
+
         startActivity(intent);
-        finish(); // this method is to call the rest of android lifecycle component i.e, onDestroy
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
     }
 
