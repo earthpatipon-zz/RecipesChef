@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.earthpatipon.recipeschef.Fragment.HomeFragment;
@@ -23,6 +24,7 @@ import com.example.earthpatipon.recipeschef.entity.User;
 import com.example.earthpatipon.recipeschef.Adapter.HomeAdapter;
 import com.example.earthpatipon.recipeschef.entity.RecipeCard;
 import com.example.earthpatipon.recipeschef.Adapter.SearchAdapter;
+import com.example.earthpatipon.recipeschef.entity.UserLike;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private HomeAdapter homeAdapter;
     private SearchAdapter searchAdapter;
 
-    private List<RecipeCard> recipeList;
+    private List<RecipeCard> cardList;
 
     private User user;
 
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         getCurrentUser(); // get User session
-        initRecipeList(); // get list of Recipe
+        initCardList(); // get list of Recipe
         initToolbar(); // get Toolbar
     }
 
@@ -109,22 +111,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         user = AppDatabase.getInstance(getApplicationContext()).userDao().findByName(userName);
     }
 
-    private void initRecipeList() {
+    private void initCardList() {
 
-        // TODO : Auto-filled like button for user
-        recipeList = new ArrayList<>();
+        cardList = new ArrayList<>();
+
+        List<UserLike> ulList = AppDatabase.getInstance(this).userLikeDao().findByUserID(user.getUserID());
         List<Recipe> recipes = AppDatabase.getInstance(this).recipeDao().getAllRecipe();
 
         for (int i = 0; i < recipes.size(); i++) {
             RecipeCard card = new RecipeCard();
             card.setCardName(recipes.get(i).getRecipeName());
-            card.setIsFav(0);
-            card.setIsTurned(0);
-            this.recipeList.add(card);
+            card.setId(recipes.get(i).getRecipeID());
+            card.setIsLiked(0);
+            for(UserLike ul : ulList){
+                if(ul.getRecipeID() == recipes.get(i).getRecipeID()){
+                    card.setIsLiked(1);
+                    break;
+                }
+            }
+            this.cardList.add(card);
         }
 
-        homeAdapter = new HomeAdapter(this, recipeList, user);
-        searchAdapter = new SearchAdapter(this, recipeList);
+        homeAdapter = new HomeAdapter(this, cardList, user);
+        searchAdapter = new SearchAdapter(this, cardList);
 
         replaceFragment(HomeFragment.class);
     }
@@ -163,8 +172,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public User getUser(){ return user; }
 
-    public List<RecipeCard> getRecipeList() {
-        return recipeList;
+    public List<RecipeCard> getCardList() {
+        return cardList;
     }
 
     public HomeAdapter getHomeAdapter() {

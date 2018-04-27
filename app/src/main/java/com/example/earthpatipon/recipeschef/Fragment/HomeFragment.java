@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.earthpatipon.recipeschef.Adapter.HomeAdapter;
 import com.example.earthpatipon.recipeschef.MainActivity;
@@ -47,7 +46,7 @@ public class HomeFragment extends Fragment {
 
         MainActivity activity = (MainActivity) getActivity();
         homeAdapter = activity.getHomeAdapter();
-        recipeList = activity.getRecipeList();
+        recipeList = activity.getCardList();
 
         recyclerView = view.findViewById(R.id.homeRecycleView);
         recyclerView.setHasFixedSize(true);

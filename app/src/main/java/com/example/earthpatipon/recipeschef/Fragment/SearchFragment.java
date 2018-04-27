@@ -49,7 +49,7 @@ public class SearchFragment extends Fragment {
 
         MainActivity activity = (MainActivity) getActivity();
         searchAdapter = activity.getSearchAdapter();
-        recipeList = activity.getRecipeList();
+        recipeList = activity.getCardList();
 
         recyclerView = view.findViewById(R.id.searchRecycleView);
         recyclerView.setHasFixedSize(true);

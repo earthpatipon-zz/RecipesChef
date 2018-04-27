@@ -1,10 +1,13 @@
+/* Group: Aoong Aoong
+ * Members: Tanaporn 5888124, Kanjanaporn 5888178, Patipon 5888218
+ */
 package com.example.earthpatipon.recipeschef.entity;
 
 public class RecipeCard {
 
     private String cardName;
-    private int isFav;
-    private int isTurned;
+    private int id;
+    private int isLiked;
 
     public String getCardName() {
         return cardName;
@@ -14,19 +17,19 @@ public class RecipeCard {
         this.cardName = cardName;
     }
 
-    public int getIsFav() {
-        return isFav;
+    public int getId() {
+        return id;
     }
 
-    public void setIsFav(int isFav) {
-        this.isFav = isFav;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getIsTurned() {
-        return isTurned;
+    public int getIsLiked() {
+        return isLiked;
     }
 
-    public void setIsTurned(int isTurned) {
-        this.isTurned = isTurned;
+    public void setIsLiked(int isLiked) {
+        this.isLiked = isLiked;
     }
 }

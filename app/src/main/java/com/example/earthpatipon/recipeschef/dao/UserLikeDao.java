@@ -23,9 +23,6 @@ public interface UserLikeDao {
     @Query("SELECT * FROM UserLike WHERE UserID = :userID")
     List<UserLike> findByUserID(int userID);
 
-    @Query("SELECT * FROM UserLike WHERE UserID = :recipeID")
-    List<UserLike> findByRecipeID(int recipeID);
-
     @Query("DELETE FROM UserLike WHERE UserID = :userID and RecipeID = :recipeID")
     void delete(int userID, int recipeID);
 

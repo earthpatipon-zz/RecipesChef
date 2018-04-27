@@ -28,15 +28,15 @@ import java.util.List;
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> implements Filterable{
 
     private Context context;
-    private List<RecipeCard> recipeList;
-    private List<RecipeCard> recipeListFiltered;
+    private List<RecipeCard> cardList;
+    private List<RecipeCard> cardListFiltered;
 
 
     public SearchAdapter(Context context, List<RecipeCard> list) {
 
         this.context = context;
-        this.recipeList = list;
-        this.recipeListFiltered = list;
+        this.cardList = list;
+        this.cardListFiltered = list;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     @Override
     public void onBindViewHolder(SearchViewHolder holder, int position) {
 
-        String cardName = recipeList.get(position).getCardName();
+        String cardName = cardList.get(position).getCardName();
         File file = new File(context.getFilesDir().getPath() + File.separator + "RecipeImages",cardName + ".png");
         Uri imageUri = Uri.fromFile(file);
         Glide.with(context).load(imageUri).into(holder.thumbnailView);
@@ -61,7 +61,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @Override
     public int getItemCount() {
-        return recipeListFiltered.size();
+        return cardListFiltered.size();
     }
 
     @Override
@@ -72,11 +72,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                 String charString = charSequence != null ? charSequence.toString() : "";
                 List<RecipeCard> filteredList = new ArrayList<>();
 
-                    for (RecipeCard row : recipeList) {
+                    for (RecipeCard card : cardList) {
                         // TODO: implement search logic here
-                        if (row.getCardName().toLowerCase().contains(charString.toLowerCase())) {
+                        if (card.getCardName().toLowerCase().contains(charString.toLowerCase())) {
                             //Log.d("cardName",row.getCardName());
-                            filteredList.add(row);
+                            filteredList.add(card);
                         }
                     }
                 FilterResults filterResults = new FilterResults();
@@ -87,7 +87,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                recipeListFiltered = (ArrayList<RecipeCard>) filterResults.values;
+                cardListFiltered = (ArrayList<RecipeCard>) filterResults.values;
                 notifyDataSetChanged();
             }
         };

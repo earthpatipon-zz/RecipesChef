@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.earthpatipon.recipeschef.MainActivity;
 import com.example.earthpatipon.recipeschef.R;
 import com.example.earthpatipon.recipeschef.RecipeActivity;
 import com.example.earthpatipon.recipeschef.database.AppDatabase;
@@ -30,13 +29,13 @@ import java.util.List;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
 
     private Context context;
-    private List<RecipeCard> recipeList;
+    private List<RecipeCard> cardList;
     private User user;
 
     public HomeAdapter(Context context, List<RecipeCard> list, User user) {
 
         this.context = context;
-        this.recipeList = list;
+        this.cardList = list;
         this.user = user;
     }
 
@@ -53,20 +52,25 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
     @Override
     public void onBindViewHolder(HomeViewHolder holder, int position) {
 
-        String cardName = recipeList.get(position).getCardName();
+        String cardName = cardList.get(position).getCardName();
         File file = new File(context.getFilesDir().getPath() + File.separator + "RecipeImages",cardName + ".png");
         Uri imageUri = Uri.fromFile(file);
         Glide.with(context).load(imageUri).into(holder.coverImageView);
 
         holder.titleTextView.setText(cardName);
 
+        if(cardList.get(position).getIsLiked() == 1) { // Liked
+            holder.likeImageView.setImageResource(R.drawable.ic_liked);
+            holder.likeImageView.setTag(R.drawable.ic_liked);
+        } else { // Not Liked
+            holder.likeImageView.setTag(R.drawable.ic_like);
+        }
 
-        holder.likeImageView.setTag(R.drawable.ic_like);
     }
 
     @Override
     public int getItemCount() {
-        return recipeList.size();
+        return cardList.size();
     }
 
     public class HomeViewHolder extends RecyclerView.ViewHolder {

@@ -20,12 +20,6 @@ public interface RecipeDao {
     @Query("SELECT * FROM Recipe")
     List<Recipe> getAllRecipe();
 
-    @Query("SELECT * FROM Recipe WHERE Category = :category")
-    List<Recipe> findByCategory(String category);
-
-    @Query("SELECT * FROM Recipe WHERE RecipeName LIKE :keyword")
-    List<Recipe> findByKeyword(String keyword);
-
     @Query("SELECT * FROM Recipe WHERE RecipeName = :recipeName")
     Recipe getRecipe(String recipeName);
 
