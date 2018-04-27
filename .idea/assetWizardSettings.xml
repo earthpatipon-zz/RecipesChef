@@ -20,7 +20,7 @@
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="$PROJECT_DIR$/../../Logo1.png" />
+                                      <entry key="imageAsset" value="$PROJECT_DIR$/../../1080.png" />
                                       <entry key="outputName" value="ic_launcher_logo" />
                                     </map>
                                   </option>
