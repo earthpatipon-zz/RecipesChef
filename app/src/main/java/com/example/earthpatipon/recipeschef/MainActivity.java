@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (id) {
             case R.id.home:
+                getSupportActionBar().setTitle("Home");
                 replaceFragment(HomeFragment.class);
                 break;
             case R.id.search:
