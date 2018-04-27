@@ -51,8 +51,8 @@ public class RecipeActivity extends AppCompatActivity {
 
         File file = new File(getFilesDir().getPath() + File.separator + "RecipeImages",recipe.getRecipeName() + ".png");
         Uri imageUri = Uri.fromFile(file);
-        Glide.with(this).load(imageUri).into(recipeImage);
 
+        Glide.with(this).load(imageUri).into(recipeImage);
         recipeName.setText(recipe.getRecipeName());
         recipeDesciption.setText(recipe.getDescription());
         recipeDifficulty.setText(recipe.getDifficulty());
@@ -61,15 +61,6 @@ public class RecipeActivity extends AppCompatActivity {
         recipeIngredient.setText(recipe.getIngredient());
         recipeInstruction.setText(recipe.getInstruction());
         recipeCategory.setText(recipe.getCategory());
-    }
-
-    @Override
-    public void onBackPressed() {
-
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
-        finish(); // this method is to call the rest of android lifecycle component i.e, onDestroy
-        //overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
     }
 
     private void getCurrentRecipe(){
@@ -84,6 +75,4 @@ public class RecipeActivity extends AppCompatActivity {
 
         recipe = AppDatabase.getInstance(getApplicationContext()).recipeDao().getRecipe(recipeName);
     }
-
-
 }

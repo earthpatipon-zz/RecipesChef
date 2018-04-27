@@ -37,7 +37,7 @@ public class SearchFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true); // Add option menu
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -71,7 +71,6 @@ public class SearchFragment extends Fragment {
         searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
-
         // listening to search query text change
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
@@ -79,14 +78,14 @@ public class SearchFragment extends Fragment {
             public boolean onQueryTextSubmit(String query) {
                 // filter recycler view when query submitted
                 searchAdapter.getFilter().filter(query);
-                return false;
+                return true;
             }
 
             @Override
             public boolean onQueryTextChange(String query) {
                 // filter recycler view when text is changed
                 searchAdapter.getFilter().filter(query);
-                return false;
+                return true;
             }
         });
     }

@@ -42,7 +42,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     @Override
     public SearchViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        // create a new view
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_search, parent, false);
         SearchViewHolder holder = new SearchViewHolder(context, view);
         return holder;
@@ -51,11 +50,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     @Override
     public void onBindViewHolder(SearchViewHolder holder, int position) {
 
-        String cardName = cardList.get(position).getCardName();
+        String cardName = cardListFiltered.get(position).getCardName();
         File file = new File(context.getFilesDir().getPath() + File.separator + "RecipeImages",cardName + ".png");
         Uri imageUri = Uri.fromFile(file);
-        Glide.with(context).load(imageUri).into(holder.thumbnailView);
 
+        Glide.with(context).load(imageUri).into(holder.thumbnailView);
         holder.titleTextView.setText(cardName);
     }
 
@@ -70,15 +69,15 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
                 String charString = charSequence != null ? charSequence.toString() : "";
-                List<RecipeCard> filteredList = new ArrayList<>();
 
-                    for (RecipeCard card : cardList) {
-                        // TODO: implement search logic here
-                        if (card.getCardName().toLowerCase().contains(charString.toLowerCase())) {
-                            //Log.d("cardName",row.getCardName());
+                List<RecipeCard> filteredList = new ArrayList<>(); // new list to carry searched card
+
+                for (RecipeCard card : cardList) {
+                    // search logic
+                    if (card.getCardName().toLowerCase().trim().contains(charString.toLowerCase())) {
                             filteredList.add(card);
-                        }
                     }
+                }
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = filteredList;
                 filterResults.count = filteredList.size();
@@ -109,12 +108,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context.getApplicationContext(), RecipeActivity.class);
-                    //PACK DATA
-                    intent.putExtra("SENDER_KEY", "HomeFragment");
+                    intent.putExtra("SENDER_KEY", "HomeFragment"); // put extra info
                     intent.putExtra("NAME_KEY", titleTextView.getText().toString());
-                    //START ACTIVITY
                     context.getApplicationContext().startActivity(intent);
-                    //context.overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 }
             });
         }

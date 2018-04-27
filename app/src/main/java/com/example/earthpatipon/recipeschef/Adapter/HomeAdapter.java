@@ -42,7 +42,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
     @Override
     public HomeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        // create a new view
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_home, parent, false);
         HomeViewHolder holder = new HomeViewHolder(context, view);
 
@@ -55,8 +54,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
         String cardName = cardList.get(position).getCardName();
         File file = new File(context.getFilesDir().getPath() + File.separator + "RecipeImages",cardName + ".png");
         Uri imageUri = Uri.fromFile(file);
-        Glide.with(context).load(imageUri).into(holder.coverImageView);
 
+        Glide.with(context).load(imageUri).into(holder.coverImageView);
         holder.titleTextView.setText(cardName);
 
         if(cardList.get(position).getIsLiked() == 1) { // Liked
