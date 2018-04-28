@@ -16,7 +16,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import android.view.View;
+import android.widget.TextView;
+
 import com.example.earthpatipon.recipeschef.Adapter.HomeAdapter;
+import com.example.earthpatipon.recipeschef.Adapter.LikedAdapter;
+import com.example.earthpatipon.recipeschef.Adapter.ProfileAdapter;
 import com.example.earthpatipon.recipeschef.Adapter.SearchAdapter;
 import com.example.earthpatipon.recipeschef.Fragment.HomeFragment;
 import com.example.earthpatipon.recipeschef.Fragment.ProfileFragment;
@@ -35,9 +40,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle toggle;
     private DrawerLayout drawer;
     private Toolbar toolbar;
+    private TextView username;
 
     private HomeAdapter homeAdapter;
     private SearchAdapter searchAdapter;
+    private ProfileAdapter profileAdapter;
+    private LikedAdapter likedAdapter;
 
     private List<RecipeCard> cardList;
 
@@ -109,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void getCurrentUser() {
-
         String userName = "";
 
         final String sender = this.getIntent().getExtras().getString("SENDER_KEY");
@@ -139,6 +146,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         homeAdapter = new HomeAdapter(this, cardList, user);
         searchAdapter = new SearchAdapter(this, cardList);
+        profileAdapter = new ProfileAdapter(this, user);
+        //likedAdapter = LikedAdapter(this, user);
 
         replaceFragment(HomeFragment.class);
     }
@@ -178,6 +187,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View navigationHeader = navigationView.getHeaderView(0);
+
+        username = navigationHeader.findViewById(R.id.user_name);
+        username.setText(user.getUserName());
     }
 
 
@@ -207,5 +220,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public SearchAdapter getSearchAdapter() {
         return searchAdapter;
     }
+
+    public ProfileAdapter getProfileAdapter() { return profileAdapter;}
+
+    public LikedAdapter getLikedAdapter() { return likedAdapter;}
 }
 
