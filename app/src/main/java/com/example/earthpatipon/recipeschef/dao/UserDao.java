@@ -10,7 +10,6 @@ import android.arch.persistence.room.Query;
 
 import com.example.earthpatipon.recipeschef.entity.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 // This class is an interface to connect to database table "User" with through Room
@@ -25,6 +24,9 @@ public interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(User user);
+
+    @Query("Update User SET Username = :username, Password = :password WHERE UserID = :userid")
+    void updateUser(int userid, String username, String password);
 
     @Query("DELETE FROM User")
     void deleteAll();

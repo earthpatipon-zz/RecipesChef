@@ -15,6 +15,7 @@
             android:title="@string/fragment_profile"/>
 
         <item android:id="@+id/logout"
+            android:icon="@drawable/logout"
             android:title="@string/fragment_logout"/>
     </group>
 </menu>
