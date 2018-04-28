@@ -14,14 +14,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-<<<<<<< HEAD
 import android.view.View;
 import android.widget.TextView;
-=======
-import android.widget.Toast;
->>>>>>> 8ef1308441197d482f59bb97855cc928e1e991fd
 
 import com.example.earthpatipon.recipeschef.Adapter.HomeAdapter;
 import com.example.earthpatipon.recipeschef.Adapter.LikedAdapter;

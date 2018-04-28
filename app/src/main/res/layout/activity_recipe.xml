@@ -6,10 +6,13 @@
     android:layout_height="match_parent">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="69dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,8 +25,10 @@
                 android:layout_height="300dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@color/egg"
+                android:background="@color/yellow"
                 android:cropToPadding="false"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
                 android:scaleType="centerCrop"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="235dp" />
@@ -38,33 +43,35 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:textSize="26dp"
-                    android:text="@string/recipe_name"
                     android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/recipe_name"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:padding="10dp"/>
+                    android:textSize="26dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
+                android:layout_height="5dp"
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/recipe_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/recipe_description"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
+                android:text="@string/recipe_description"
+                android:textColor="@color/black"
                 android:textSize="20dp" />
 
-            <Space
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:layout_weight="1" />
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:src="@drawable/line" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -74,22 +81,24 @@
 
                 <TextView
                     android:id="@+id/difficul"
-                    android:layout_width="176dp"
+                    android:layout_width="200dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
                     android:text="Difficulty:"
-                    android:textSize="19dp" />
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/recipe_difficulty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="15dp"
-                    android:textSize="19dp"
-                    android:text="@string/recipe_difficulty" />
+                    android:layout_weight="1"
+                    android:text="@string/recipe_difficulty"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -105,17 +114,19 @@
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
                     android:text="Time/Minutes:"
-                    android:textSize="19dp" />
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/recipe_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="19dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:text="@string/recipe_time" />
+                    android:layout_weight="1"
+                    android:text="@string/recipe_time"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -131,23 +142,26 @@
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
                     android:text="Serve:"
-                    android:textSize="19dp" />
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/recipe_serve"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/recipe_serve"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="15dp"
-                    android:textSize="19dp" />
+                    android:layout_weight="1"
+                    android:text="@string/recipe_serve"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
             </LinearLayout>
 
-            <Space
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:layout_weight="1" />
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:src="@drawable/line" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -167,10 +181,12 @@
                     android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="2dp"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
+                    android:paddingLeft="10dp"
                     android:text="Ingredient"
+                    android:textColor="@color/black"
                     android:textSize="20dp" />
 
             </LinearLayout>
@@ -182,18 +198,20 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_weight="1"
+                android:paddingLeft="41dp"
                 android:text="@string/recipe_ingredient"
-                android:textSize="19dp" />
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
-            <Space
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:layout_weight="1" />
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:src="@drawable/line" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -209,11 +227,12 @@
                     android:id="@+id/textView7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:text="Instruction"
+                    android:textColor="@color/black"
                     android:textSize="20dp" />
             </LinearLayout>
 
@@ -221,20 +240,23 @@
                 android:id="@+id/recipe_instruction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:textSize="19dp"
-                android:text="@string/recipe_instruction" />
+                android:layout_weight="1"
+                android:paddingLeft="41dp"
+                android:text="@string/recipe_instruction"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
-            <Space
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:layout_weight="1" />
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:src="@drawable/line" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -245,17 +267,19 @@
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
                     android:text="Category:"
-                    android:textSize="19dp" />
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/recipe_category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="19dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="15dp"
-                    android:text="@string/recipe_category" />
+                    android:layout_weight="1"
+                    android:text="@string/recipe_category"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
             </LinearLayout>
 
             <Space
