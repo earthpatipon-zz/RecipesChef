@@ -208,8 +208,4 @@ public class LoginActivity extends AppCompatActivity {
             loginButton.setEnabled(true);
         }
     }
-
-    public String getUserName() {
-        return userName;
-    }
 }
