@@ -37,4 +37,7 @@
     // TODO: Delete this shit in product version
     <string name="button_bypass">Button</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
