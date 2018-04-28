@@ -12,70 +12,70 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ListView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/profileView">
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:background="@color/egg">
+
+            <ImageView
+                android:id="@+id/user_profile_image"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.032"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.018"
+                app:srcCompat="@drawable/chef" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="217dp"
+                    android:layout_height="44dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="28dp"
+                    android:text="AccountName"
+                    android:textSize="25dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.652"
+                    app:layout_constraintStart_toEndOf="@+id/user_profile_image"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/edit_profile_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/username_textview" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
-
-                <ImageView
-                    android:id="@+id/user_profile_image"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.032"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.018"
-                    app:srcCompat="@drawable/chef" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/user_name"
-                        android:layout_width="217dp"
-                        android:layout_height="44dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="28dp"
-                        android:text="AccountName"
-                        android:textSize="25dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.652"
-                        app:layout_constraintStart_toEndOf="@+id/user_profile_image"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <Button
-                        android:id="@+id/edit_profile_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="52dp"
-                        android:layout_marginEnd="16dp"
-                        android:text="Button"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/username_textview" />
-                </LinearLayout>
-            </LinearLayout>
-        </ListView>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/likedRecycleView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true" />
+                android:orientation="vertical" />
+        </ScrollView>
 
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

@@ -123,8 +123,8 @@ public class ProfileFragment extends Fragment {
         MainActivity activity = (MainActivity) getActivity();
         profileAdapter = activity.getProfileAdapter();
 
-        userNameText = getView().findViewById(R.id.user_name);
-        editProfileButton = getView().findViewById(R.id.edit_profile_button);
+        userNameText = view.findViewById(R.id.user_name);
+        editProfileButton = view.findViewById(R.id.edit_profile_button);
 
         userNameText.setText(user.getUserName());
         editProfileButton.setOnClickListener(new View.OnClickListener() {

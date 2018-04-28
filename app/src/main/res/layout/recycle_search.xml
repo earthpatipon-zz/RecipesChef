@@ -3,25 +3,50 @@
     android:id="@+id/semiCardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
     android:clickable="true"
     android:paddingBottom="@dimen/activity_horizontal_margin"
     android:paddingLeft="@dimen/activity_left_margin"
     android:paddingRight="@dimen/activity_right_margin"
     android:paddingTop="@dimen/activity_horizontal_margin">
 
-    <ImageView
-        android:id="@+id/thumbnailView"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/activity_right_margin" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/thumbnailView"
-        android:fontFamily="sans-serif-medium" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp">
+
+            <ImageView
+                android:id="@+id/thumbnailView"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@id/thumbnailView"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="@dimen/text_size" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/line" />
+
+    </LinearLayout>
 
 </RelativeLayout>
