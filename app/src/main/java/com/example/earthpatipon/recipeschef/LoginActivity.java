@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
     // This method is called when user is validated as not passed
     private void onLoginFailed() {
 
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_LONG).show();
         loginButton.setEnabled(true);
     }
 
@@ -198,11 +198,11 @@ public class LoginActivity extends AppCompatActivity {
                     onLoginSuccess();
                 }
                 else{
-                    Toast.makeText(getBaseContext(), "Password isn't correct", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Password isn't correct", Toast.LENGTH_LONG).show();
                 }
             }
             else{
-                Toast.makeText(getBaseContext(),  "This username doesn't exist, try to signup first!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),  "This username doesn't exist, try to signup first!", Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
             }
             loginButton.setEnabled(true);

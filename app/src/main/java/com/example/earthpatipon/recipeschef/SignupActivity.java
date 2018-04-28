@@ -90,7 +90,7 @@ public class SignupActivity extends AppCompatActivity {
 
         signupButton.setEnabled(true);
 
-        Toast.makeText(getBaseContext(), "Sign up Successfully", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Sign up Successfully", Toast.LENGTH_LONG).show();
 
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
@@ -100,7 +100,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private void onSignupFailed() {
 
-        Toast.makeText(getBaseContext(), "Sign up failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Sign up failed", Toast.LENGTH_LONG).show();
         signupButton.setEnabled(true);
     }
 
@@ -164,7 +164,7 @@ public class SignupActivity extends AppCompatActivity {
                onSignupSuccess();
             }
             else{
-               Toast.makeText(getBaseContext(), "Username already exist", Toast.LENGTH_LONG).show();
+               Toast.makeText(getApplicationContext(), "Username already exist", Toast.LENGTH_LONG).show();
                //can set some interval
                signupButton.setEnabled(true);
             }

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.earthpatipon.recipeschef.MainActivity;
 import com.example.earthpatipon.recipeschef.R;
 import com.example.earthpatipon.recipeschef.RecipeActivity;
 import com.example.earthpatipon.recipeschef.database.AppDatabase;
@@ -43,9 +44,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
     public HomeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_home, parent, false);
-        HomeViewHolder holder = new HomeViewHolder(context, view);
-
-        return holder;
+        return new HomeViewHolder(context, view);
     }
 
     @Override
@@ -62,9 +61,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
             holder.likeImageView.setImageResource(R.drawable.ic_liked);
             holder.likeImageView.setTag(R.drawable.ic_liked);
         } else { // Not Liked
+            holder.likeImageView.setImageResource(R.drawable.ic_like);
             holder.likeImageView.setTag(R.drawable.ic_like);
         }
-
     }
 
     @Override
@@ -102,26 +101,35 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
             likeImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int id = (int) likeImageView.getTag();
-                    if (id == R.drawable.ic_like) {
+                    int userID = user.getUserID();
+                    int recipeID = AppDatabase.getInstance(context).recipeDao().getRecipe(titleTextView.getText().toString()).getRecipeID();
+                    Log.d("recipeName: ", titleTextView.getText().toString());
+                    Log.d("recipeID: ", Integer.toString(recipeID));
+                    RecipeCard card = null;
+                    for (RecipeCard c : cardList) {
+                        if (c.getId() == recipeID) {
+                            card = c;
+                            break;
+                        }
+                    }
+                    if (likeImageView.getTag().equals(R.drawable.ic_like)) {
                         likeImageView.setTag(R.drawable.ic_liked);
                         likeImageView.setImageResource(R.drawable.ic_liked);
                         Toast.makeText(context, titleTextView.getText() + " added to favourites", Toast.LENGTH_SHORT).show();
 
                         // Record user like
-                        int userID = user.getUserID();
-                        int recipeID = AppDatabase.getInstance(context).recipeDao().getRecipe(titleTextView.getText().toString()).getRecipeID();
                         UserLike userLike = new UserLike(userID, recipeID);
                         AppDatabase.getInstance(context).userLikeDao().insert(userLike);
-                    } else {
+                        if (card != null) { card.setIsLiked(1); }
+                    }
+                    else {
                         likeImageView.setTag(R.drawable.ic_like);
                         likeImageView.setImageResource(R.drawable.ic_like);
                         Toast.makeText(context, titleTextView.getText() + " removed from favourites", Toast.LENGTH_SHORT).show();
 
                         // De-Record user like
-                        int userID = user.getUserID();
-                        int recipeID = AppDatabase.getInstance(context).recipeDao().getRecipe(titleTextView.getText().toString()).getRecipeID();
                         AppDatabase.getInstance(context).userLikeDao().delete(userID, recipeID);
+                        if (card != null) { card.setIsLiked(0); }
                     }
                 }
             });

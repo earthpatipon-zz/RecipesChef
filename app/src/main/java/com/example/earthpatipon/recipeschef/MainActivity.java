@@ -3,6 +3,7 @@
  */
 package com.example.earthpatipon.recipeschef;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -13,7 +14,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.earthpatipon.recipeschef.Adapter.HomeAdapter;
 import com.example.earthpatipon.recipeschef.Adapter.SearchAdapter;
@@ -50,6 +53,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getCurrentUser(); // get User session
         initCardList(); // get list of Recipe
         initToolbar(); // get Toolbar
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateCardList(this, user.getUserID(), cardList);
     }
 
     @Override
@@ -117,20 +126,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         cardList = new ArrayList<>();
 
-        List<UserLike> ulList = AppDatabase.getInstance(this).userLikeDao().findByUserID(user.getUserID());
         List<Recipe> recipes = AppDatabase.getInstance(this).recipeDao().getAllRecipe();
 
-        for (int i = 0; i < recipes.size(); i++) {
+        for(Recipe r: recipes){
             RecipeCard card = new RecipeCard();
-            card.setCardName(recipes.get(i).getRecipeName());
-            card.setId(recipes.get(i).getRecipeID());
+            card.setId(r.getRecipeID());
+            //Log.d("cardID: ",Integer.toString(card.getId()));
+            //Log.d("recipeID: ", Integer.toString(r.getRecipeID()));
+            card.setCardName((r.getRecipeName()));
             card.setIsLiked(0);
-            for(UserLike ul : ulList){
-                if(ul.getRecipeID() == recipes.get(i).getRecipeID()){
-                    card.setIsLiked(1);
-                    break;
-                }
-            }
             this.cardList.add(card);
         }
 
@@ -140,9 +144,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         replaceFragment(HomeFragment.class);
     }
 
+    public static void updateCardList(Context context, int userID, List<RecipeCard> cardList) {
+        List<UserLike> ulList = AppDatabase.getInstance(context).userLikeDao().findByUserID(userID);
+        // reset isLiked of each card
+        for (RecipeCard card : cardList) {
+            card.setIsLiked(0);
+        }
+        // set isLiked of each card
+        for (UserLike ul : ulList) {
+            int likedRecipeID = ul.getRecipeID();
+            for (RecipeCard card : cardList) {
+                if (card.getId() == likedRecipeID) {
+                    card.setIsLiked(1);
+                    break;
+                }
+            }
+        }
+    }
+
     private void initToolbar(){
 
         toolbar = findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Home");
 
