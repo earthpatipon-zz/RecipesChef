@@ -5,6 +5,7 @@ package com.example.earthpatipon.recipeschef.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -54,7 +55,8 @@ public class HomeFragment extends Fragment {
         if (recipeList.size() > 0 & recyclerView != null) {
             recyclerView.setAdapter(homeAdapter);
         }
-        recyclerView.setLayoutManager(MyLayoutManager);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        //recyclerView.setLayoutManager(MyLayoutManager);
         return view;
     }
 }
