@@ -149,8 +149,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         homeAdapter = new HomeAdapter(this, cardList, user);
         searchAdapter = new SearchAdapter(this, cardList);
-        likeAdapter = new LikeAdapter(this, likeCardList
-                , user);
+        likeAdapter = new LikeAdapter(this, likeCardList, user);
 
         replaceFragment(HomeFragment.class);
     }
@@ -245,6 +244,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return searchAdapter;
     }
 
-    public LikeAdapter getLikeAdapter() { return likeAdapter;}
+    public LikeAdapter getLikeAdapter() {
+        likeCardList = updateLikeCardList(this, cardList, user.getUserID());
+        likeAdapter = new LikeAdapter(this, likeCardList, user);
+        return likeAdapter;
+    }
 }
 

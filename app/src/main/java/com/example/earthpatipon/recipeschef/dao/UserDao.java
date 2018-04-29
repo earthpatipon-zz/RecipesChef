@@ -25,8 +25,8 @@ public interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(User user);
 
-    @Query("Update User SET Username = :username, Password = :password WHERE UserID = :userid")
-    void updateUser(int userid, String username, String password);
+    @Query("Update User SET Password = :password WHERE UserID = :userid")
+    void updateUser(int userid, String password);
 
     @Query("DELETE FROM User")
     void deleteAll();

@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,8 +43,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        //LinearLayoutManager MyLayoutManager = new LinearLayoutManager(getActivity());
-        //MyLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         MainActivity activity = (MainActivity) getActivity();
         homeAdapter = activity.getHomeAdapter();
@@ -56,7 +55,7 @@ public class HomeFragment extends Fragment {
             recyclerView.setAdapter(homeAdapter);
         }
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        //recyclerView.setLayoutManager(MyLayoutManager);
+
         return view;
     }
 }

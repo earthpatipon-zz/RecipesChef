@@ -3,6 +3,7 @@
 // */
 package com.example.earthpatipon.recipeschef.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.earthpatipon.recipeschef.EditProfileActivity;
 import com.example.earthpatipon.recipeschef.adapter.LikeAdapter;
 import com.example.earthpatipon.recipeschef.MainActivity;
 import com.example.earthpatipon.recipeschef.R;
@@ -40,6 +42,14 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
+    public void onResume(){
+
+        MainActivity activity = (MainActivity) getActivity();
+        likeAdapter = activity.getLikeAdapter();
+        super.onResume();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
@@ -58,15 +68,15 @@ public class ProfileFragment extends Fragment {
         }
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
-//        editProfileButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), EditProfileFragment.class);
-//                intent.putExtra("SENDER_KEY", "HomeFragment"); // put extra info
-//                intent.putExtra("NAME_KEY", userNameText.getText().toString());
-//                getActivity().startActivity(intent);
-//            }
-//        });
+        editProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+                intent.putExtra("SENDER_KEY", "ProfileFragment"); // put extra info
+                intent.putExtra("NAME_KEY", userNameText.getText().toString());
+                getActivity().startActivity(intent);
+            }
+        });
 
         return view;
     }

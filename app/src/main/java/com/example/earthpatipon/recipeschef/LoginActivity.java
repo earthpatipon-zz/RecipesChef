@@ -41,20 +41,6 @@ public class LoginActivity extends AppCompatActivity {
 
         initDatabase();
 
-        // Bypass to wherever I want
-        // TODO; remove from production code
-//        bypassButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                userName = "bypass";
-//                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                //PACK DATA
-//                intent.putExtra("SENDER_KEY", "Bypass");
-//                intent.putExtra("NAME_KEY", userName);
-//                startActivity(intent);
-//            }
-//        });
-
         // Create Dialog (like pop-up) object
         progressDialog = new ProgressDialog(this, R.style.AppTheme_White_Dialog);
 
@@ -125,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
     // This method is called when user is validated as not passed
     private void onLoginFailed() {
 
-        Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_SHORT).show();
         loginButton.setEnabled(true);
     }
 
@@ -198,11 +184,11 @@ public class LoginActivity extends AppCompatActivity {
                     onLoginSuccess();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Password isn't correct", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Password isn't correct", Toast.LENGTH_SHORT).show();
                 }
             }
             else{
-                Toast.makeText(getApplicationContext(),  "This username doesn't exist, try to signup first!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),  "This username doesn't exist, try to signup first!", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
             }
             loginButton.setEnabled(true);
