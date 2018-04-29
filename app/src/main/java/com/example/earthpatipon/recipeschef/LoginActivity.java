@@ -26,7 +26,6 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.input_password) EditText passwordInput;
     @BindView(R.id.button_login) Button loginButton;
     @BindView(R.id.button_signup) Button signupButton;
-//    @BindView(R.id.button_bypass) Button bypassButton;
 
     private ProgressDialog progressDialog;
     private String userName;
