@@ -14,18 +14,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.earthpatipon.recipeschef.Adapter.HomeAdapter;
-import com.example.earthpatipon.recipeschef.Adapter.LikedAdapter;
-import com.example.earthpatipon.recipeschef.Adapter.ProfileAdapter;
-import com.example.earthpatipon.recipeschef.Adapter.SearchAdapter;
-import com.example.earthpatipon.recipeschef.Fragment.HomeFragment;
-import com.example.earthpatipon.recipeschef.Fragment.ProfileFragment;
-import com.example.earthpatipon.recipeschef.Fragment.SearchFragment;
+import com.example.earthpatipon.recipeschef.adapter.HomeAdapter;
+import com.example.earthpatipon.recipeschef.adapter.LikeAdapter;
+import com.example.earthpatipon.recipeschef.adapter.SearchAdapter;
+import com.example.earthpatipon.recipeschef.fragment.HomeFragment;
+import com.example.earthpatipon.recipeschef.fragment.ProfileFragment;
+import com.example.earthpatipon.recipeschef.fragment.SearchFragment;
 import com.example.earthpatipon.recipeschef.database.AppDatabase;
 import com.example.earthpatipon.recipeschef.entity.Recipe;
 import com.example.earthpatipon.recipeschef.entity.RecipeCard;
@@ -44,10 +44,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private HomeAdapter homeAdapter;
     private SearchAdapter searchAdapter;
-    private ProfileAdapter profileAdapter;
-    private LikedAdapter likedAdapter;
+    private LikeAdapter likeAdapter;
 
     private List<RecipeCard> cardList;
+    private List<RecipeCard> likeCardList;
 
     private User user;
 
@@ -65,7 +65,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
-        updateCardList(this, user.getUserID(), cardList);
+        updateCardList(this, cardList, user.getUserID());
+        likeCardList = updateLikeCardList(this, cardList, user.getUserID());
     }
 
     @Override
@@ -131,28 +132,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void initCardList() {
 
         cardList = new ArrayList<>();
+        likeCardList = new ArrayList<>();
+
 
         List<Recipe> recipes = AppDatabase.getInstance(this).recipeDao().getAllRecipe();
 
         for(Recipe r: recipes){
             RecipeCard card = new RecipeCard();
             card.setId(r.getRecipeID());
-            //Log.d("cardID: ",Integer.toString(card.getId()));
-            //Log.d("recipeID: ", Integer.toString(r.getRecipeID()));
             card.setCardName((r.getRecipeName()));
             card.setIsLiked(0);
             this.cardList.add(card);
         }
 
+        likeCardList = updateLikeCardList(this, cardList, user.getUserID());
+
         homeAdapter = new HomeAdapter(this, cardList, user);
         searchAdapter = new SearchAdapter(this, cardList);
-        profileAdapter = new ProfileAdapter(this, user);
-        //likedAdapter = LikedAdapter(this, user);
+        likeAdapter = new LikeAdapter(this, likeCardList
+                , user);
 
         replaceFragment(HomeFragment.class);
     }
 
-    public static void updateCardList(Context context, int userID, List<RecipeCard> cardList) {
+    public static void updateCardList(Context context, List<RecipeCard> cardList, int userID) {
+
         List<UserLike> ulList = AppDatabase.getInstance(context).userLikeDao().findByUserID(userID);
         // reset isLiked of each card
         for (RecipeCard card : cardList) {
@@ -168,6 +172,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         }
+    }
+
+    public static List<RecipeCard> updateLikeCardList(Context context, List<RecipeCard> cardList, int userID) {
+
+        List<RecipeCard> likeCardList = new ArrayList<>();
+        List<UserLike> ulList = AppDatabase.getInstance(context).userLikeDao().findByUserID(userID);
+        for (UserLike ul : ulList) {
+            int likedRecipeID = ul.getRecipeID();
+            for (RecipeCard card : cardList) {
+                if (card.getId() == likedRecipeID) {
+                    likeCardList.add(card);
+                    break;
+                }
+            }
+        }
+        return  likeCardList;
     }
 
     private void initToolbar(){
@@ -213,6 +233,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return cardList;
     }
 
+    public List<RecipeCard> getLikeCardList() {
+        return likeCardList;
+    }
+
     public HomeAdapter getHomeAdapter() {
         return homeAdapter;
     }
@@ -221,8 +245,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return searchAdapter;
     }
 
-    public ProfileAdapter getProfileAdapter() { return profileAdapter;}
-
-    public LikedAdapter getLikedAdapter() { return likedAdapter;}
+    public LikeAdapter getLikeAdapter() { return likeAdapter;}
 }
 

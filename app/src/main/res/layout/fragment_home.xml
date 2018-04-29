@@ -7,14 +7,14 @@
     android:paddingLeft="@dimen/activity_left_margin"
     android:paddingRight="@dimen/activity_right_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Fragment.HomeFragment">
+    tools:context=".fragment.HomeFragment">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/homeRecycleView"
+        android:id="@+id/recycleView_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true" >
+        android:layout_centerVertical="true">
 
 
     </android.support.v7.widget.RecyclerView>

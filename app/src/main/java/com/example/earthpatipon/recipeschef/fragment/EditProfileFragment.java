@@ -1,7 +1,7 @@
 /* Group: Aoong Aoong
  * Members: Tanaporn 5888124, Kanjanaporn 5888178, Patipon 5888218
  */
-package com.example.earthpatipon.recipeschef.Fragment;
+package com.example.earthpatipon.recipeschef.fragment;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.earthpatipon.recipeschef.Adapter.ProfileAdapter;
 import com.example.earthpatipon.recipeschef.MainActivity;
 import com.example.earthpatipon.recipeschef.R;
 import com.example.earthpatipon.recipeschef.database.AppDatabase;
@@ -37,7 +36,6 @@ public class EditProfileFragment extends Fragment {
     private Boolean valid;
     private ProgressDialog progressDialog;
     private User user;
-    private ProfileAdapter profileAdapter;
 
 
     public EditProfileFragment() { }

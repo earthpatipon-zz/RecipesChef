@@ -1,7 +1,7 @@
 /* Group: Aoong Aoong
  * Members: Tanaporn 5888124, Kanjanaporn 5888178, Patipon 5888218
  */
-package com.example.earthpatipon.recipeschef.Adapter;
+package com.example.earthpatipon.recipeschef.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,37 +26,37 @@ import com.example.earthpatipon.recipeschef.entity.UserLike;
 import java.io.File;
 import java.util.List;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
+public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.LikeViewHolder> {
 
     private Context context;
-    private List<RecipeCard> cardList;
+    private List<RecipeCard> likeCardList;
     private User user;
 
-    public HomeAdapter(Context context, List<RecipeCard> list, User user) {
+    public LikeAdapter(Context context, List<RecipeCard> list, User user) {
 
         this.context = context;
-        this.cardList = list;
+        this.likeCardList = list;
         this.user = user;
     }
 
     @Override
-    public HomeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public LikeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_home, parent, false);
-        return new HomeViewHolder(context, view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_like, parent, false);
+        return new LikeViewHolder(context, view);
     }
 
     @Override
-    public void onBindViewHolder(HomeViewHolder holder, int position) {
+    public void onBindViewHolder(LikeViewHolder holder, int position) {
 
-        String cardName = cardList.get(position).getCardName();
+        String cardName = likeCardList.get(position).getCardName();
         File file = new File(context.getFilesDir().getPath() + File.separator + "RecipeImages",cardName + ".png");
         Uri imageUri = Uri.fromFile(file);
 
         Glide.with(context).load(imageUri).into(holder.coverImageView);
         holder.titleTextView.setText(cardName);
 
-        if(cardList.get(position).getIsLiked() == 1) { // Liked
+        if(likeCardList.get(position).getIsLiked() == 1) { // Liked
             holder.likeImageView.setImageResource(R.drawable.ic_liked);
             holder.likeImageView.setTag(R.drawable.ic_liked);
         } else { // Not Liked
@@ -67,17 +67,17 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
 
     @Override
     public int getItemCount() {
-        return cardList.size();
+        return likeCardList.size();
     }
 
-    public class HomeViewHolder extends RecyclerView.ViewHolder {
+    public class LikeViewHolder extends RecyclerView.ViewHolder {
 
         public TextView titleTextView;
         public ImageView coverImageView;
         public ImageView likeImageView;
         public ImageView shareImageView;
 
-        public HomeViewHolder(final Context context, View v) {
+        public LikeViewHolder(final Context context, View v) {
 
             super(v);
             titleTextView = v.findViewById(R.id.titleTextView);
@@ -105,7 +105,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
                     Log.d("recipeName: ", titleTextView.getText().toString());
                     Log.d("recipeID: ", Integer.toString(recipeID));
                     RecipeCard card = null;
-                    for (RecipeCard c : cardList) {
+                    for (RecipeCard c : likeCardList) {
                         if (c.getId() == recipeID) {
                             card = c;
                             break;

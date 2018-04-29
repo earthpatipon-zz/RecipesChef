@@ -1,7 +1,7 @@
 /* Group: Aoong Aoong
  * Members: Tanaporn 5888124, Kanjanaporn 5888178, Patipon 5888218
  */
-package com.example.earthpatipon.recipeschef.Fragment;
+package com.example.earthpatipon.recipeschef.fragment;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -10,7 +10,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,7 +19,7 @@ import android.view.ViewGroup;
 import com.example.earthpatipon.recipeschef.MainActivity;
 import com.example.earthpatipon.recipeschef.R;
 import com.example.earthpatipon.recipeschef.entity.RecipeCard;
-import com.example.earthpatipon.recipeschef.Adapter.SearchAdapter;
+import com.example.earthpatipon.recipeschef.adapter.SearchAdapter;
 
 import java.util.List;
 
@@ -52,7 +51,7 @@ public class SearchFragment extends Fragment {
         searchAdapter = activity.getSearchAdapter();
         recipeList = activity.getCardList();
 
-        recyclerView = view.findViewById(R.id.searchRecycleView);
+        recyclerView = view.findViewById(R.id.recycleView_search);
         recyclerView.setHasFixedSize(true);
 
         if (recipeList.size() > 0 & recyclerView != null) {

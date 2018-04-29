@@ -1,7 +1,7 @@
 /* Group: Aoong Aoong
  * Members: Tanaporn 5888124, Kanjanaporn 5888178, Patipon 5888218
  */
-package com.example.earthpatipon.recipeschef.Fragment;
+package com.example.earthpatipon.recipeschef.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.earthpatipon.recipeschef.Adapter.HomeAdapter;
+import com.example.earthpatipon.recipeschef.adapter.HomeAdapter;
 import com.example.earthpatipon.recipeschef.MainActivity;
 import com.example.earthpatipon.recipeschef.R;
 import com.example.earthpatipon.recipeschef.entity.RecipeCard;
@@ -42,14 +42,14 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        LinearLayoutManager MyLayoutManager = new LinearLayoutManager(getActivity());
-        MyLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        //LinearLayoutManager MyLayoutManager = new LinearLayoutManager(getActivity());
+        //MyLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         MainActivity activity = (MainActivity) getActivity();
         homeAdapter = activity.getHomeAdapter();
         recipeList = activity.getCardList();
 
-        recyclerView = view.findViewById(R.id.homeRecycleView);
+        recyclerView = view.findViewById(R.id.recycleView_home);
         recyclerView.setHasFixedSize(true);
 
         if (recipeList.size() > 0 & recyclerView != null) {
