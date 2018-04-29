@@ -31,7 +31,8 @@
                 android:gravity="right"
                 android:paddingTop="3dp"
                 android:paddingRight="3dp"
-                android:background="@android:drawable/screen_background_light_transparent">
+                android:background="@android:drawable/screen_background_light_transparent"
+                android:layout_gravity="bottom">
 
                 <ImageView
                     android:id="@+id/likeImageView"

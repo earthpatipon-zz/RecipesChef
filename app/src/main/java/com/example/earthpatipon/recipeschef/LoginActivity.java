@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.input_password) EditText passwordInput;
     @BindView(R.id.button_login) Button loginButton;
     @BindView(R.id.button_signup) Button signupButton;
-    @BindView(R.id.button_bypass) Button bypassButton;
+//    @BindView(R.id.button_bypass) Button bypassButton;
 
     private ProgressDialog progressDialog;
     private String userName;
@@ -43,17 +43,17 @@ public class LoginActivity extends AppCompatActivity {
 
         // Bypass to wherever I want
         // TODO; remove from production code
-        bypassButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                userName = "bypass";
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                //PACK DATA
-                intent.putExtra("SENDER_KEY", "Bypass");
-                intent.putExtra("NAME_KEY", userName);
-                startActivity(intent);
-            }
-        });
+//        bypassButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                userName = "bypass";
+//                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                //PACK DATA
+//                intent.putExtra("SENDER_KEY", "Bypass");
+//                intent.putExtra("NAME_KEY", userName);
+//                startActivity(intent);
+//            }
+//        });
 
         // Create Dialog (like pop-up) object
         progressDialog = new ProgressDialog(this, R.style.AppTheme_White_Dialog);
