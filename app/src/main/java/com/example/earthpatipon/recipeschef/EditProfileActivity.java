@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.earthpatipon.recipeschef.database.AppDatabase;
@@ -21,7 +22,7 @@ import butterknife.ButterKnife;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    @BindView(R.id.username_text) EditText usernameText;
+    @BindView(R.id.username_text) TextView usernameText;
     @BindView(R.id.edit_newpassword) EditText passwordEdit;
     @BindView(R.id.edit_reenter_newpassword) EditText confirmPasswordEdit;
     @BindView(R.id.button_confirm) Button confirmButton;

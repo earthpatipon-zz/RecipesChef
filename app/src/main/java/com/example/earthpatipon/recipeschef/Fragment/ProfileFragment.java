@@ -66,7 +66,7 @@ public class ProfileFragment extends Fragment {
         if (likeCardList.size() > 0 & recyclerView != null) {
             recyclerView.setAdapter(likeAdapter);
         }
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
 
         editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
