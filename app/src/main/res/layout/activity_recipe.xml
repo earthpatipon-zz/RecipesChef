@@ -111,7 +111,7 @@
 
                 <TextView
                     android:id="@+id/timemin"
-                    android:layout_width="276dp"
+                    android:layout_width="304dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
