@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    private TextView textView;
     private ImageView imageView;
 
     @Override
